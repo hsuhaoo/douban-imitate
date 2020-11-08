@@ -1,0 +1,131 @@
+body{
+    margin: 0;
+    padding: 0;
+    font: 12px Helvetica,Arial,sans-serif;
+}
+.global-nav-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #545652;
+    height: 28px;
+}
+
+.global-nav-items li {
+    float: left;
+    line-height: 28px;
+}
+
+.global-nav-items li a {
+    display: block;
+    color: #d5d5d5;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    padding: 0 12px;
+}
+
+.global-nav-items li a:hover {
+    color: white;
+}
+.top-nav-info{
+    float: right;
+    margin: 0 12px 0 0;
+}
+.nav {
+    width: 100%;
+    min-width: 1040px;
+    margin-bottom: 40px;
+    background: #f6f6f1;
+    margin: 0 auto;
+    position: relative;
+    /* border-bottom: 1px solid #e5ebe4; */
+} 
+
+.nav .nav-logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    line-height: 100em; 
+}
+
+.nav-logo {
+    float: left;
+    height: 56px;
+    width: 145px;
+    margin: 0 13px 0 0; 
+    background: url(../lg_book_a11_1.png) no-repeat 0 12px;
+}
+.nav-wrap {
+    border-bottom: 1px solid #e5ebe4;
+}
+.nav-primary {
+    width: 1040px;
+    margin: 0 auto;
+    height: 59px;
+    padding: 10px 0 5px;
+    /* border-bottom: 1px solid #e5ebe4; */
+}
+.nav-search{
+    position: relative;
+    padding: 10px 0px;
+
+}
+.nav-search input{
+    width: 470px;
+    height: 30px;
+    /* outline: none; */
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 1px 0px #DCDCDC;
+    padding: 0px 0px 0px 10px;
+}
+.nav-search .inp-btn{
+    width: 37px;
+    height: 34px;
+    background: url(../nav_bk_bg.png) no-repeat 0 -40px; 
+    position: absolute;
+    top: 9px;
+    left: 620px;
+    border-radius: 1px;
+    cursor: pointer;
+}
+.nav-secondary {
+    width: 1040px;
+    margin: 0 auto;
+    padding: 10px 0 5px;
+}
+.nav-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 28px;
+}
+.nav-items li {
+    float: left;
+}
+.nav-items li a {
+    text-decoration: none;
+    display: block;
+    color: #614e3c;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 14px;
+}
+.nav-items li a:hover {
+    background-color: #614e3c;
+    color: white;
+}
+a.bookannual {
+    position: absolute;
+    width: 186px;
+    height: 96px;
+    top: 10px;
+    left: 50%;
+    margin-left: 320px;
+    background: url(../annual_2019.png) center/contain no-repeat; 
+}
