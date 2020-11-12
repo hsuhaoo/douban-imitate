@@ -1,0 +1,96 @@
+<head>
+    <style>
+        .container{
+			width: 710px;
+			height: 1000px;
+			margin: 50px auto;
+			background-color: #eee;
+			display: flex;
+			/* flex-flow:row nowrap; */
+			/* justify-content:space-between; */
+			box-sizing:border-box;
+			padding: 10px;
+		}
+		.box{
+			box-sizing:border-box;
+		}
+		.box span{
+			display: block;
+			margin-bottom: 10px;
+			width: 160px;
+			box-sizing:border-box;
+		}
+		.box0 span{
+			width: 330px;
+			height: 150px;
+			background-color: blue;
+		}
+		.boxcontainer{
+			width: 330px;
+			display: flex;
+			flex-flow:row wrap;
+			justify-content:space-between;
+		}
+		.boxcontainer span{
+			width: 160px;
+			background-color: orange;
+		}
+		.boxcontainer .box01 span{
+			height: 80px;
+			background-color: purple;
+		}
+		.boxcontainer .box02 span{
+			height: 160px;
+		}
+		.box2 span{
+			height: 100px;
+			background-color: green;
+		}
+		.box3 span{
+			height: 200px;
+			background-color: pink;
+		}
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box0">
+            <span class="item"></span>
+            <span class="item"></span>
+            <span class="item"></span>
+            <span class="item"></span>
+            <span class="item"></span>
+            <span class="item"></span>
+			<!-- <div class="boxcontainer">
+				<div class="box box01">
+					<span class="item"></span>
+					<span class="item"></span>
+					<span class="item"></span>
+					<span class="item"></span>
+					<span class="item"></span>
+				</div>
+				<div class="box box02">
+					<span class="item"></span>
+					<span class="item"></span>
+					<span class="item"></span>
+					<span class="item"></span>
+				</div>
+			</div> -->
+			
+		</div>
+		<div class="box box2">
+			<span class="item"></span>
+			<span class="item"></span>
+			<span class="item"></span>
+			<span class="item"></span>
+			<span class="item"></span>
+			<span class="item"></span>
+		</div>
+		<div class="box box3">
+			<span class="item"></span>
+			<span class="item"></span>
+			<span class="item"></span>
+		</div>
+	</div>
+	
+</body>

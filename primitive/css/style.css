@@ -129,3 +129,30 @@ a.bookannual {
     margin-left: 320px;
     background: url(../annual_2019.png) center/contain no-repeat; 
 }
+.section {
+    width: 1040px;
+    margin: 0 auto;
+    display: flex;
+}
+.main {
+    flex:2;
+}
+.list-col {
+    /* flex: 1; */
+    display: flex;
+    list-style: none;
+    /* flex-wrap: wrap; */
+}
+.list-col li {
+    flex: 1;
+}
+.list-col li img{
+    width: 100px;  
+    height: auto;
+}
+.list-col li .more-meta{
+    display: none;
+}
+.hot-tags-col5 {
+    flex: 1;
+}

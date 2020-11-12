@@ -1,0 +1,91 @@
+.navLogo {
+    /* float: left; */
+    height: 56px;
+    width: 145px;
+    margin: 0 13px 0 0; 
+    background: url(../assert/lg_book_a11_1.png) no-repeat 0 12px;
+}
+.navLogoa {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    line-height: 100em; 
+}
+.nav {
+    width: 100%;
+    min-width: 1040px;
+    margin-bottom: 40px;
+    background: #f6f6f1;
+    margin: 0 auto;
+    position: relative;
+} 
+.navWrap {
+    border-bottom: 1px solid #e5ebe4;
+}
+.navPrimary {
+    width: 1040px;
+    margin: 0 auto;
+    height: 59px;
+    padding: 10px 0 5px;
+    display: flex;
+}
+.navSearch{
+    padding: 10px 0px;
+    display: flex;
+
+}
+.inp{
+    width: 470px;
+    height: 30px;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 1px 0px #DCDCDC;
+    padding: 0px 0px 0px 10px;
+}
+
+.inpBtn{
+    width: 37px;
+    height: 34px;
+    background: url(../assert/nav_bk_bg.png) no-repeat 0 -40px; 
+    border-radius: 1px;
+    cursor: pointer;
+}
+.navSecondary {
+    width: 1040px;
+    margin: 0 auto;
+    padding: 10px 0 5px;
+    display: flex;
+    position: relative;
+}
+
+.navItems {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 28px;
+}
+.navItemsa {
+    text-decoration: none;
+    display: block;
+    color: #614e3c;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.navItemsa:hover {
+    background-color: #614e3c;
+    color: white;
+}
+.bookannual {
+    position: absolute;
+    width: 186px;
+    height: 96px;
+    top: 10px;
+    left: 50%;
+    margin-left: 320px;
+    background: url(../assert/annual_2019.png) center/contain no-repeat; 
+}

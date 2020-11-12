@@ -1,0 +1,37 @@
+
+.listCol {
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content:space-between;  */
+
+}
+.li {
+    flex: 150px;
+}
+.img{
+    width: 100px;  
+    height: auto;
+}
+.moreMeta{
+    display: none;
+}
+.h{
+    border-bottom: 1px solid #e5ebe4;
+}
+.linkMore{
+    font-size: 13px;
+    color: #3377aa;
+    margin: 15px;
+}
+.newBook{
+    margin-top: 40px;
+}
+.linka{
+    color: #3377aa;
+}
+/* .hot{
+    height: 100px;
+    width: 200px;
+    background: red;
+} */
