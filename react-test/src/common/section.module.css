@@ -18,6 +18,7 @@
 }
 .h{
     border-bottom: 1px solid #e5ebe4;
+    display: inline-block;
 }
 .linkMore{
     font-size: 13px;
@@ -35,3 +36,46 @@
     width: 200px;
     background: red;
 } */
+.prev{
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    font: 100 16px Arial;
+        font-weight: 100;
+        line-height: normal;
+    text-align: center;
+    line-height: 16px;
+    margin-left: 4px;
+    outline: none;
+    border-radius: 9px;
+    background: #9b9a8e;
+}
+.next{
+    composes: prev;
+}
+.slideControls{
+    /* display: inline-block; */
+}
+.slideBtns{
+    float: right;
+}
+.slidedots{
+    list-style: none;
+    float: right;
+
+}
+.slidedots li{
+    display: inline-block;
+}
+.slidedots a{
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    zoom: 1;
+    margin-left: 8px;
+    border-radius: 5px;
+    background: #dfdfdf;
+}

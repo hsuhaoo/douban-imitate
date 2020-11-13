@@ -7,6 +7,18 @@ const h = <h2 className={styles.h}>
             <a className={styles.linka}href="/latest?icn=index-latestbook-all">更多»</a>
         </span>
     </h2>
+const slide = <div className={styles.slideControls}>
+    <ol className={styles.slidedots}>
+        <li><a dataIndex="1" href="#" className=""></a></li>
+        <li><a dataIndex="2" href="#" className=""></a></li>
+        <li><a dataIndex="3" href="#" className=""></a></li>
+        <li><a dataIndex="4" href="#" className=""></a></li>
+    </ol>
+    <div className={styles.slideBtns}>
+    <a href="#" className={styles.prev}>&#8249;</a>
+    <a href="#" className={styles.next}>&#8250;</a>
+    </div>
+</div>
 const li = <div className={styles.li}>
     <div class="cover">
         <a href="https://book.douban.com/subject/35076023/?icn=index-latestbook-subject" title="信">
@@ -92,6 +104,7 @@ const list = keys.map((num)=>
 export const Section =()=>
     <div className={styles.newBook}>
         {h}
+        {slide}
     <div className={styles.listCol}>{list}</div>
     </div>
 
