@@ -1,0 +1,21 @@
+.cover{
+    background-image: url(https://img1.doubanio.com/view/subject/l/public/s33705199.jpg)
+}
+.infoContent{
+    width: 100%;
+    border: solid 1px #ddd;
+    border-radius: 2px;
+    padding: 25px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+    
+}
+.section{
+    margin-top: 40px;
+    width: 675px;
+}
+.title{
+    line-height: 1.38;
+    font-size: 15px;
+    color: #37a;
+}

@@ -1,14 +1,12 @@
 
-.listCol {
-    width: 800px;
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content:space-between;  */
+.list5 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-column-gap: 9px;
 
 }
-.li {
-    flex: 150px;
-}
+
 .img{
     width: 100px;  
     height: auto;
@@ -17,18 +15,21 @@
     display: none;
 }
 .h{
-    border-bottom: 1px solid #e5ebe4;
-    display: inline-block;
+    margin: 0;
+    line-height: 150%;
+    justify-content: flex-start;
+    flex:1;
 }
 .linkMore{
     font-size: 13px;
     color: #3377aa;
     margin: 15px;
 }
-.newBook{
+.section{
     margin-top: 40px;
+    width: 675px;
 }
-.linka{
+.linkMore a{
     color: #3377aa;
 }
 /* .hot{
@@ -44,8 +45,8 @@
     *display: inline;
     zoom: 1;
     font: 100 16px Arial;
-        font-weight: 100;
-        line-height: normal;
+    font-weight: 100;
+    line-height: normal;
     text-align: center;
     line-height: 16px;
     margin-left: 4px;
@@ -57,25 +58,41 @@
     composes: prev;
 }
 .slideControls{
-    /* display: inline-block; */
+    flex:1;
+    justify-content: flex-end;
+    display: flex;
+    align-items:center;
+    line-height: 150%;
 }
 .slideBtns{
-    float: right;
+    display:  inline-block;
+}
+.slideBtns a{
+    text-decoration: none;
 }
 .slidedots{
     list-style: none;
-    float: right;
-
+    margin: 0;
+    display:  inline-block;
 }
 .slidedots li{
     display: inline-block;
+    margin: 0;
 }
 .slidedots a{
     width: 5px;
     height: 5px;
     display: inline-block;
-    zoom: 1;
     margin-left: 8px;
     border-radius: 5px;
     background: #dfdfdf;
+}
+.nav {
+    display: flex;
+    border-bottom: 1px solid #e5ebe4;
+
+}
+.infoContent{
+    width: 100%;
+    
 }

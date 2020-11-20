@@ -2,3 +2,4 @@ node_modules/
 *.txt
 react-test/node_modules/
 react-test/dist/
+douban-vue/node_modules/
