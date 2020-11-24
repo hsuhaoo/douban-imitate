@@ -5,6 +5,7 @@
     <div class="container">
       <div class="main">
         <NewBook/>
+        <BookInfo/>
       </div>
       <div class="aside"></div>
     </div>
@@ -15,6 +16,8 @@
 import Nav from './components/nav.vue'
 import Header from './components/header.vue'
 import NewBook from './components/newBook.vue'
+import BookInfo from './components/bookInfo.vue'
+
 
 export default {
   name: 'App',
@@ -22,6 +25,7 @@ export default {
     Nav,
     Header,
     NewBook,
+    BookInfo,
   }
 }
 </script>
@@ -31,8 +35,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 body{
   margin: 0;

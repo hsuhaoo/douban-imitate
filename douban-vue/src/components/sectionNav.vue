@@ -2,8 +2,9 @@
     <div class="nav">
         <h2 class="h">
             <span>{{title}}</span>
+            <slot></slot>
         </h2>
-        <div class="slideControls">
+        <div class="slideControls" v-if="slide">
             <div class="slidedots">
             <li>
                 <a dataIndex="1" href="#" className=""></a>
@@ -36,28 +37,24 @@
             return{
             }
         },
-        props:['title']
+        props:{
+            title:{
+                type: String,
+            },
+            slide:{
+                type: Boolean,
+                default: false,
+            }
+        }
     }
 </script>
 
 <style scoped>
-    .moreMeta{
-        display: none;
-    }
     .h{
         margin: 0;
         line-height: 150%;
-        justify-content: flex-start;
         flex:1;
-    }
-    .linkMore{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
-    }
-    .section{
-        margin-top: 40px;
-        width: 675px;
+        font-size: 18px;
     }
     .linkMore a{
         color: #3377aa;
@@ -112,6 +109,7 @@
     .nav {
         display: flex;
         border-bottom: 1px solid #e5ebe4;
+        margin-top: 40px;
     
     }
 </style>
