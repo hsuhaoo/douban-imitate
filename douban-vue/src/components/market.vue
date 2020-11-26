@@ -44,7 +44,7 @@
 <script>
     import SectionNav from './sectionNav.vue'
     export default{
-        name:"EBook",
+        name:"Market",
         data(){
             return{
                 items : [...Array(5).keys()],
