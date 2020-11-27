@@ -1,8 +1,8 @@
 <template>
     <div id="reviews" class="section">
-        <SectionNav title="电子图书">
-            <span><a href="/review/best/">更多热门书评»</a></span>
-            <span><a href="/review/latest/">最新书评»</a></span>
+        <SectionNav title="最受欢迎的书评">
+            <span class="link-more"><a href="/review/best/">更多热门书评»</a></span>
+            <span class="link-more"><a href="/review/latest/">最新书评»</a></span>
         </SectionNav>
         <div class="reviews-bd">
             <div class="review " v-for="(item,index) in items" :key="index">
@@ -37,7 +37,7 @@
         name:"Review",
         data(){
             return{
-                items : [...Array(10).keys()],
+                items : [...Array(4).keys()],
                 infos : ['下载豆瓣客户端', '登录/注册']
             }
         },
@@ -56,16 +56,24 @@
 
 }
 
-.img{
-    width: 100px;  
+img{
+    width: 75px;  
     height: auto;
 }
 .more-meta{
         display: none;
 }
-.link-more{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
+.review{
+    display: flex;
+    border-bottom: 1px solid #e5ebe4;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+}
+.review:nth-last-child(1){
+    border-bottom: 0;
+}
+h3 {
+    margin: 0;
+    padding: 0;
 }
 </style>

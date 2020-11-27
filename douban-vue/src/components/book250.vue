@@ -6,9 +6,8 @@
             </span>
         </SectionNav>
           
-          <div class="content clearfix s" id="book_rec" data-dstat-areaid="58" data-dstat-mode="click,expose">
+        <div class="content clearfix s" id="book_rec" data-dstat-areaid="58" data-dstat-mode="click,expose">
                 
-          
           <dl v-for="(item,index) in items" :key="index">
             <dt>
               <a onclick="" href="https://book.douban.com/subject/1963912/?icn=index-book250-subject">
@@ -28,7 +27,7 @@
             </dd>
           </dl>
       
-          </div>
+        </div>
         </div>
 </template>
 
@@ -49,17 +48,20 @@
     </script>
 
 <style scoped>
-.list-col5 {
+.content {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 20%);
+    grid-template-columns: repeat(3, 33.3%);
     grid-column-gap: 9px;
 
 }
 
-.img{
-    width: 100px;  
+img{
+    width: 82px;  
     height: auto;
+}
+dd {
+  margin: 0;
 }
 .more-meta{
         display: none;
@@ -68,5 +70,8 @@
         font-size: 13px;
         color: #3377aa;
         margin: 15px;
+}
+.meta-label{
+  display: none;
 }
 </style>

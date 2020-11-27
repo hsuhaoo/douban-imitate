@@ -56,8 +56,17 @@
         flex:1;
         font-size: 18px;
     }
-    .linkMore a{
+    .link-more{
+        font-size: 13px;
         color: #3377aa;
+        margin-left: 15px;
+    }
+    .link-more a{
+        color: #3377aa;
+    }
+    .link-more a:visited, .link-more a:hover{
+        background-color: #37a;
+        color: white;
     }
     .prev{
         color: #fff;
@@ -110,6 +119,8 @@
         display: flex;
         border-bottom: 1px solid #e5ebe4;
         margin-top: 40px;
+        padding-bottom: 3px;
+        margin-bottom: 16px;
     
     }
 </style>

@@ -35,8 +35,16 @@
     /* .cover{
     background-image: url(https://img1.doubanio.com/view/subject/l/public/s33705199.jpg)
     } */
+    .cover{
+        width: 96px;
+        height: 96px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center bottom;
+    }
     a {
         display: flex;
+        text-decoration: none;
     }
     .infoContent{
         width: 100%;
@@ -45,6 +53,7 @@
         padding: 25px;
         box-sizing: border-box;
         margin-bottom: 4px;
+        display: flex;
         
     }
     .section{
@@ -55,5 +64,19 @@
         line-height: 1.38;
         font-size: 15px;
         color: #37a;
+        display: block;
+    }
+    .meta{
+        display: block;
+        color: #aaa;
+        font-size: 13px;
+        line-height: 1;
+        margin-top: 8px;
+    }
+    .abstract {
+        color: #494949;
+        line-height: 1.5;
+        margin: 8px 0 0 0;
+        font-size: 13px;
     }
 </style>

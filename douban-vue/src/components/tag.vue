@@ -227,12 +227,22 @@
     </script>
 
 <style scoped>
-.list-col5 {
+ul {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-column-gap: 9px;
-
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px dashed #e5ebe4;
+}
+ul li .tag_title{
+    flex-basis: 100%;
+}
+li a{
+    display: inline-block;
+    font-size: 13px;
+    background-color: #f5f5f5;
+    padding: 2px 11px 0;
+    margin: 0 3px 5px 0;
+    line-height: 20px;
 }
 
 .img{
@@ -240,11 +250,11 @@
     height: auto;
 }
 .more-meta{
-        display: none;
+    display: none;
 }
 .link-more{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
+    font-size: 13px;
+    color: #3377aa;
+    margin: 15px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <SectionNav title='新书速递' slide="true">
-            <span class="linkMore">
+            <span class="link-more">
                 <a class="" href="/latest?icn=index-latestbook-all">更多»</a>
             </span>
         </SectionNav>
@@ -74,9 +74,5 @@
 .moreMeta{
         display: none;
 }
-.linkMore{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
-}
+
 </style>

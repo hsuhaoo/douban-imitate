@@ -7,7 +7,7 @@
                 <ul class="list list-ranking">
                     
                     <li class="item impression_track_chart" v-for="(item,index) in items" :key="index" data-track="https://frodo.douban.com/rohirrim/tracking/impression?subject_id=27192353&amp;isbn=7555262800&amp;source=dangdang&amp;user_id=&amp;bid=BUzu3uNF2kA&amp;platform=pc&amp;location=vendor_charts">
-                        <span class="rank-num">1.</span>
+                        <span class="rank-num">{{index+1}}.</span>
                         <div class="book-info">
                             <a href="https://book.douban.com/subject/27192353/" class="name" target="_blank">钝感力</a>
                             <div class="author">[日] 渡边淳一</div>
@@ -36,24 +36,29 @@
     </script>
 
 <style scoped>
-.list-col5 {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-column-gap: 9px;
 
-}
-
-.img{
-    width: 100px;  
-    height: auto;
-}
 .more-meta{
-        display: none;
+    display: none;
 }
-.link-more{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
+.rank-num{
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+.book-info{
+    width: 223px;
+    font-size: 14px;
+    color: #666;
+}
+li{
+    padding: 4px 0;
+    border-bottom: 1px dashed #e5ebe4;
+    display: flex;
+    align-items: baseline;
+}
+li>a{
+    font-size: 13px;
+    padding: 6px 8px;
+    color: #999;
 }
 </style>

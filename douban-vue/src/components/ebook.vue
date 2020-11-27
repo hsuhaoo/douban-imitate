@@ -96,9 +96,13 @@
 .more-meta{
         display: none;
 }
-.link-more{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
+h3 {
+    font-weight: normal;
+    font-size: 15px;
+}
+.more-info a{
+    font-size: 15px;
+    color: #3377aa;
+    margin-left: 15px;
 }
 </style>

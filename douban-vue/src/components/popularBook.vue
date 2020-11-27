@@ -39,12 +39,11 @@
                 <p class="extra-info">
                     
                 </p>
-                    
+                </div>
                     <p class="reviews">
                     在看不见硝烟的生活里，这本书能带给你安宁
                     (<a onclick="moreurl(this, {from:'pop_fiction'})" href="https://book.douban.com/review/12909258/?icn=index-topchart-subject">单读评论</a>)
                     </p>
-                </div>
             </li>
           </ul>
         </div>
@@ -71,22 +70,34 @@ ul {
     list-style: none;
     width: 100%;
     margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-column-gap: 9px;
 }
 
-
+a{
+    color: #3377aa;
+}
+li{
+    display: flex;
+    flex-wrap: wrap;
+}
+.reviews{
+    flex-basis: 100%;
+    color: #666;
+    padding-top: 15px;
+}
 img{
-    width: 100px;  
+    width: 82px;  
     height: auto;
 }
 .moreMeta{
         display: none;
 }
-.link-more{
-        font-size: 13px;
-        color: #3377aa;
-        margin: 15px;
+.title {
+    font-size: 15px;
+    height: auto;
+    margin: 0;
 }
 </style>

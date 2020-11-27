@@ -10,7 +10,7 @@
           <div class="top">
             <div class="cover">
               <a href="https://market.douban.com/book/rickandmorty?utm_campaign=book_freyr_section&amp;utm_source=douban&amp;utm_medium=pc_web">
-                <div class="pic" style="background-image: url(https://qnmob3.doubanio.com/view/freyr_page_photo/raw/public/6882.jpg?imageView2/2/q/80/w/212/h/280/format/png)"></div>
+                <div class="pic" style="background-image: url(https://qnmob3.doubanio.com/view/freyr_page_photo/raw/public/6882.jpg?imageView2/2/q/80/w/212/h/280/format.png)"></div>
               </a>
             </div>
             <div id="market_books_header_info" class="info">
@@ -58,15 +58,30 @@
     </script>
 
 <style scoped>
-.list5 {
+ul {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5, 20%);
     grid-column-gap: 9px;
+    list-style: none;
 
 }
-
-.img{
+.top .title{
+  font-size: 23px;
+  line-height: 32px;
+  margin-bottom: 6px;
+}
+.top{
+  display: flex;
+}
+.pic{
+  width: 130px;
+  height: 172px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+img{
     width: 100px;  
     height: auto;
 }
