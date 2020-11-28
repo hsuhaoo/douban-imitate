@@ -63,6 +63,10 @@ img{
 dd {
   margin: 0;
 }
+dd a:hover{
+    background-color: #37a;
+    color: white;
+}
 .more-meta{
         display: none;
 }
@@ -74,4 +78,5 @@ dd {
 .meta-label{
   display: none;
 }
+
 </style>

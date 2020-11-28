@@ -76,4 +76,8 @@ h3 {
     margin: 0;
     padding: 0;
 }
+.review-content a:hover, h3 a:hover{
+    background-color: #37a;
+    color: white;
+}
 </style>

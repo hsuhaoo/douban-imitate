@@ -105,4 +105,8 @@ h3 {
     color: #3377aa;
     margin-left: 15px;
 }
+.more-info a:hover, .title a:hover{
+    background-color: #37a;
+    color: white;
+}
 </style>

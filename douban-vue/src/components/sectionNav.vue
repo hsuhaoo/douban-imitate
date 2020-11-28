@@ -64,7 +64,7 @@
     .link-more a{
         color: #3377aa;
     }
-    .link-more a:visited, .link-more a:hover{
+    .link-more a:hover{
         background-color: #37a;
         color: white;
     }
@@ -84,6 +84,9 @@
         outline: none;
         border-radius: 9px;
         background: #9b9a8e;
+    }
+    a.prev:hover {
+        background-color: #afaea5;
     }
     .slideControls{
         flex:1;

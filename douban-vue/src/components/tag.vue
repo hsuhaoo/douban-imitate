@@ -244,6 +244,9 @@ li a{
     margin: 0 3px 5px 0;
     line-height: 20px;
 }
+li a:hover{
+    background-color: #e8e8e8;
+}
 
 .img{
     width: 100px;  

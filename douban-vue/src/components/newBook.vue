@@ -74,5 +74,9 @@
 .moreMeta{
         display: none;
 }
+.title a:hover{
+    background-color: #37a;
+    color: white;
+}
 
 </style>

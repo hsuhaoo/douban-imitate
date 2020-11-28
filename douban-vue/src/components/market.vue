@@ -93,4 +93,8 @@ img{
         color: #3377aa;
         margin: 15px;
 }
+.info .title a:hover{
+    background-color: #37a;
+    color: white;
+}
 </style>

@@ -100,4 +100,8 @@ img{
     height: auto;
     margin: 0;
 }
+.title a:hover, .reviews a:hover{
+    background-color: #37a;
+    color: white;
+}
 </style>

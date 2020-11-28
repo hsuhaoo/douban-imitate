@@ -50,11 +50,18 @@
     font-size: 14px;
     color: #666;
 }
+.book-info a:hover{
+    background-color: #37a;
+    color: white;
+}
 li{
     padding: 4px 0;
     border-bottom: 1px dashed #e5ebe4;
     display: flex;
     align-items: baseline;
+}
+li:hover{
+    background-color: rgb(249, 249, 246);
 }
 li>a{
     font-size: 13px;
