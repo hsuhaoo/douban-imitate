@@ -24,8 +24,13 @@
                     href="https://book.douban.com/subject/35005045/?icn=index-topchart-subject" class="">夜晚的潜水艇</a>
                 </h4>
                 <p class="entry-star-small">
-                    <span class="allstar45 star-img">
-                    </span>
+                    <ul class="star">
+                        <li>★</li>
+                        <li>★</li>
+                        <li>★</li>
+                        <li>★</li>
+                        <li>★</li>
+                    </ul>
                     <span class="average-rating">
                     9.0
                     </span>
@@ -66,7 +71,7 @@
     </script>
 
 <style scoped>
-ul {
+.list-col {
     list-style: none;
     width: 100%;
     margin: 0;
@@ -79,9 +84,18 @@ ul {
 a{
     color: #3377aa;
 }
-li{
+.list-col li{
     display: flex;
     flex-wrap: wrap;
+}
+.info {
+    margin: 0 20px;
+}
+.star{
+    display: inline-block;
+}
+.star li {
+    display: inline-block;
 }
 .reviews{
     flex-basis: 100%;

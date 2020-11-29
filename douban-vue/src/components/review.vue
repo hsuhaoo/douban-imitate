@@ -16,8 +16,13 @@
                     <div class="review-meta">
                         <a href="https://www.douban.com/people/50021732/">新经典</a> 评论
                         <a href="https://book.douban.com/review/12967087/">《物种起源》</a>
-    
-                        <span class="allstar0"></span>
+                        <ul class="star">
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                        </ul>
                     </div>
                     <div class="review-content">
                         你肯定知道他。 他和林肯同一天出生，不过比林肯有钱加幸运太多太多了。 严格意义上的富三代
@@ -76,8 +81,25 @@ h3 {
     margin: 0;
     padding: 0;
 }
-.review-content a:hover, h3 a:hover{
+
+.review-bd{
+    margin: 0 20px;
+}
+.review-meta a{
+    color: #666;
+}
+.review-content a:hover, h3 a:hover, .review-meta a:hover{
     background-color: #37a;
     color: white;
+}
+
+.review-meta{
+    color: #666;
+}
+.star{
+    display: inline-block;
+}
+.star li {
+    display: inline-block;
 }
 </style>

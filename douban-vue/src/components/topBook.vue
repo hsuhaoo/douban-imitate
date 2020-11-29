@@ -63,9 +63,14 @@ li{
 li:hover{
     background-color: rgb(249, 249, 246);
 }
+
 li>a{
     font-size: 13px;
     padding: 6px 8px;
     color: #999;
+}
+li:hover>a{
+    color: #d4bea7;
+    border:  #d4bea7 solid 1px;
 }
 </style>
