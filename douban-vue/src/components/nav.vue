@@ -3,10 +3,10 @@
 <div id="nav">
     <ul class ="itemWrap">
         <li><a class="
-        items" :href="site" target="_blank" v-for="(item,index) in items" :key="index">{{item}}</a></li>
+        items" href="sites[index]" target="_blank" v-for="(item,index) in items" :key="index">{{item}}</a></li>
     </ul>
     <ul class="infoWrap">
-        <li class="download-nav"><a class="items" :href="infosite" >下载豆瓣客户端</a>
+        <li class="download-nav"><a class="items" href="https://www.douban.com/doubanapp/app?channel=top-nav" >下载豆瓣客户端</a>
             <div class="top-nav-doubanapp">
                 <div id="top-nav-appintro" class="more-items">
                   <p class="appintro-title">豆瓣</p>
@@ -19,7 +19,7 @@
                 </div>
               </div>
         </li>
-        <li><a class="items" :href="infosite" >登录/注册</a></li>
+        <li><a class="items" href="https://accounts.douban.com/passport/login?source=book" >登录/注册</a></li>
     </ul>
 </div>
 </template>
@@ -30,7 +30,17 @@ export default{
     data(){
         return{
             items : ['豆瓣', '读书', '音乐', '同城', '小组','阅读','时间'],
-            infos : ['下载豆瓣客户端', '登录/注册']
+            sites : ["https://www.douban.com",
+                    "https://book.douban.com",
+                    "https://movie.douban.com",
+                    "https://music.douban.com",
+                    "https://www.douban.com/location",
+                    "https://www.douban.com/group",
+                    "https://read.douban.com&#47;?dcs=top-nav&amp;dcm=douban",
+                    "https://douban.fm&#47;?from_=shire_top_nav",
+                    "https://time.douban.com&#47;?dt_time_source=douban-web_top_nav",
+                    "https://market.douban.com&#47;?utm_campaign=douban_top_nav&amp;utm_source=douban&amp;utm_medium=pc_web"
+                    ]
         }
     }
 }

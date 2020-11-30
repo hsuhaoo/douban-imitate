@@ -20,7 +20,7 @@
                 <li class="" v-for="(item,index) in items" :key="index">
                     <div class="cover">
                         <a href="https://read.douban.com/ebook/163314997/?dcs=book-hot&amp;dcm=douban&amp;dct=read-subject"
-                            target="_blank" title="人类善恶小史">
+                            target="_blank" >
                             <img src="https://img1.doubanio.com/view/ark_article_cover/retina/public/163314997.jpg?v=1604977761"
                                 alt="人类善恶小史" width="106px" height="158px">
                         </a>
@@ -93,13 +93,13 @@
     width: 100px;  
     height: auto;
 }
-.more-meta{
-        display: none;
-}
+
+
 h3 {
     font-weight: normal;
     font-size: 15px;
 }
+
 .more-info a{
     font-size: 15px;
     color: #3377aa;
@@ -109,4 +109,62 @@ h3 {
     background-color: #37a;
     color: white;
 }
+
+li{
+    position: relative;
+}
+.more-meta{
+    display: none;
+    position: absolute;
+    top: -60px;
+    left: 100px;
+    right: 0;
+    z-index: 1;
+    background: #f9f9f7;
+    width: 300px; 
+    color: #666;
+    border: #acacac solid 1px;
+    padding: 15px;
+}
+.more-meta .title{
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.more-meta:before{
+    box-sizing: content-box;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top: 83px;;
+    left: -16px;
+    padding:0;
+    border-right: 8px solid #f9f9f7;
+    border-top:8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left:8px solid transparent;
+    display: block;
+    content:'';
+    z-index: 12;
+}
+.more-meta:after{
+    box-sizing: content-box;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top: 82px;;
+    left: -18px;
+    padding:0;
+    border-right: 9px solid #acacac;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    border-left:9px solid transparent;
+    display: block;
+    content:'';
+    z-index:10
+}
+li .cover:hover + .info .more-meta{
+    display: block;
+}
+
 </style>

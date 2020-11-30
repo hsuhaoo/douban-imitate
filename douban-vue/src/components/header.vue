@@ -30,7 +30,7 @@
                         target="_blank"
                     >2019书影音报告</a>
                 </li>
-                <li          class=" book-cart"
+                <li  class=" book-cart"
                 ><a href="https://market.douban.com/cart/?biz_type=book&utm_campaign=book_nav_cart&utm_source=douban&utm_medium=pc_web"
                         target="_blank"
                     >购物车</a>
@@ -46,8 +46,7 @@ export default{
     name:"Header",
     data(){
         return{
-            // items : ['豆瓣', '读书', '音乐', '同城', '小组','阅读','时间'],
-            // infos : ['下载豆瓣客户端', '登录/注册']
+
         }
     }
 }
@@ -118,16 +117,16 @@ ul{
 .navSecondary {
     width: 1040px;
     margin: 0 auto;
-    padding: 10px 0 5px;
+    padding: 6px 0 6px;
     position: relative;
 }
 
 .navItems {
     margin: 0;
-    padding: 0;
+    padding: 5px 0;
     overflow: hidden;
     display: flex;
-    height: 28px;
+    height: 18px;
 }
 .navItems a {
     text-decoration: none;
@@ -151,5 +150,17 @@ ul{
     left: 50%;
     margin-left: 320px;
     background: url(../assets/annual_2019.png) center/contain no-repeat; 
+}
+.book-cart {
+    padding-left: 5px;
+    margin-left: 12px;
+    background-image: url(http://img3.doubanio.com/dae/accounts/resources/19870c3/book/assets/icon_myorders.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 15px;
+    
+}
+.book-cart a{
+    /* margin-left: 18px; */
 }
 </style>

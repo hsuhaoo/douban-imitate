@@ -5,25 +5,25 @@
             <slot></slot>
         </h2>
         <div class="slideControls" v-if="slide">
-            <div class="slidedots">
-            <li>
-                <a dataIndex="1" href="#" className=""></a>
+            <div class="slidedots" >
+            <li :class="selectIndex===0?'select-dot':'unselect-dot'">
+                <a dataIndex="1" href="#"  ></a>
             </li>
-            <li>
-                <a dataIndex="2" href="#" className=""></a>
+            <li :class="selectIndex===1?'select-dot':'unselect-dot'">
+                <a dataIndex="2" href="#" ></a>
             </li>
-            <li>
-                <a dataIndex="3" href="#" className=""></a>
+            <li :class="selectIndex===2?'select-dot':'unselect-dot'">
+                <a dataIndex="3" href="#"></a>
             </li>
-            <li>
-                <a dataIndex="4" href="#" className=""></a>
+            <li :class="selectIndex===3?'select-dot':'unselect-dot'">
+                <a dataIndex="4" href="#" ></a>
             </li>
             </div>
             <div class="slideBtns">
-            <a href="#" class="prev">
+            <a href="#" class="prev" @click="$emit('renderul', 'prev')">
                 &#8249;
             </a>
-            <a href="#" class="prev">
+            <a href="#" class="prev" @click="$emit('renderul', 'next')">
                 &#8250;
             </a>
             </div>
@@ -44,7 +44,11 @@
             slide:{
                 type: Boolean,
                 default: false,
-            }
+            },
+            selectIndex:{
+                type: Number,
+                default: 0,
+            },
         }
     }
 </script>
@@ -116,6 +120,12 @@
         display: inline-block;
         margin-left: 8px;
         border-radius: 5px;
+        background: #dfdfdf;
+    }
+    .select-dot a{
+        background: #9b9a8f;
+    }
+    .unselect-dot a{
         background: #dfdfdf;
     }
     .nav {

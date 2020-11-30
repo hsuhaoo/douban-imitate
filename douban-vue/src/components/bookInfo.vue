@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SectionNav title='图书资讯' slide='true'></SectionNav>
+        <SectionNav title='图书资讯' slide="slide" @renderul='renderul'></SectionNav>
         <div class="infoContent">
             <a href="https://book.douban.com/review/12941655/">
             <div class="content">
@@ -23,11 +23,18 @@
         name:"BookInfo",
         data(){
             return{
-
+                slide : true,    
             }
         },
         components:{
             SectionNav,
+        },
+        methods: {
+            renderul: ()=>{
+                // let a = ul_list[0];
+                // console.log(a);
+                console.log("aaaa");
+            }
         }
     }
 </script>

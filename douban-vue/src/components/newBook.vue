@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SectionNav title='新书速递' slide="true">
+        <SectionNav title='新书速递' :slide="slide" @renderul='renderul' :selectIndex="barCount">
             <span class="link-more">
                 <a class="" href="/latest?icn=index-latestbook-all">更多»</a>
             </span>
@@ -9,32 +9,30 @@
             <li v-for="(item,index) in items" :key="index">
                 <div class="cover">
                 <a
-                    href="https://book.douban.com/subject/35076023/?icn=index-latestbook-subject"
+                    :href="newData[index].href"
                 >
-                    <img src="../assets/1.png" class="img" alt="信" />
+                    <img :src="newData[index].src" class="img" :alt="newData[index].title" />
                 </a>
                 </div>
                 <div class="info">
                     <div class="title">
                         <a
-                        href="https://book.douban.com/subject/35076023/?icn=index-latestbook-subject"
-                        title="信"
+                        :href="newData[index].href"
+                        :title="newData[index].title"
                         >
-                        信
+                        {{newData[index].title}}
                         </a>
                     </div>
-                    <div class="author">[日] 东野圭吾</div>
-                    <!-- <div class="left-triangle"></div> -->
+                    <div class="author">{{newData[index].author}}</div>
                     <div class="moreMeta">
-                        <h4 class="title">信</h4>
+                        <h4 class="title">{{newData[index].title}}</h4>
                         <p>
-                        <span class="author">[日] 东野圭吾</span>/
-                        <span class="year">2020-10-15</span>/
-                        <span class="publisher">北京联合出版公司</span>
+                        <span class="author">{{newData[index].author}}</span>/
+                        <span class="year">{{newData[index].year}}</span>/
+                        <span class="publisher">{{newData[index].publisher}}</span>
                         </p>
                         <p class="abstract">
-                        “哥哥，你好吗？这是我写给你的最后一封信……从你离去之后，这个社会开始对我复仇……”
-                        武岛直贵，一个与社会格格不入的青年——父母双亡后，他和哥哥相依为命。为了给直贵筹措学费，哥哥闯入民宅偷窃，却因盗窃杀人而入狱服刑。从此，兄弟俩只能用书信沟通。犯罪的分明是哥哥，无辜的直贵却因此失去了他的全部。学业、求职、恋爱、生活、梦想，他苦苦地追求，社会...
+                        {{newData[index].abstrct}}
                         </p>
                     </div>
                 </div>
@@ -44,27 +42,55 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
+    let ul_list = require('../data/newBook')
     export default{
         name:"NewBook",
         data(){
             return{
                 items : [...Array(10).keys()],
-                infos : ['下载豆瓣客户端', '登录/注册']
+                slide : true, 
+                barCount: 0,
             }
         },
         components:{
             SectionNav,
+        },
+        methods: {
+            renderul: function(val){
+                if(val==='prev'){
+                    if(this.barCount>0){
+                        this.barCount -= 1;
+                    }
+                    else{
+                        this.barCount = 3;
+                    }
+                }
+                else{
+                    if(this.barCount<3){
+                        this.barCount += 1;
+                    }
+                    else{
+                        this.barCount = 0;
+                    }
+                }
+            }
+        },
+        computed: {
+            newData:  function(){
+                return ul_list[this.barCount];
+            }
         }
     }
     </script>
 
 <style scoped>
 .list5 {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-column-gap: 9px;
-
+    width: 660px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    height: 450px;
+    overflow: hidden;
 }
 
 .img{
@@ -73,6 +99,18 @@
 }
 li{
     position: relative;
+    margin: 0 40px 15px 0;
+    width: 100px;
+    /* height: 200px; */
+}
+li:nth-child(5n){
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+.info > .author, .info > .title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .moreMeta{
     display: none;
@@ -91,27 +129,16 @@ li{
     font-size: 14px;
     margin-bottom: 6px;
 }
-/* .left-triangle{
-    display: none;
-    position: relative;
-    top:30px;
-    left: 100px;
-    width:400px;
-    height:200px;
-    padding:8px;
-    background-color: #FFFFFF;
-    border: #cccccc solid 1px;
-    border-radius: 3px;
-}
-.left-triangle:before{
+
+.moreMeta:before{
     box-sizing: content-box;
     width: 0px;
     height: 0px;
     position: absolute;
-    top: 23px;;
+    top: 83px;;
     left: -16px;
     padding:0;
-    border-right: 8px solid #FFFFFF;
+    border-right: 8px solid #f9f9f7;
     border-top:8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left:8px solid transparent;
@@ -119,15 +146,15 @@ li{
     content:'';
     z-index: 12;
 }
-.left-triangle:after{
+.moreMeta:after{
     box-sizing: content-box;
     width: 0px;
     height: 0px;
     position: absolute;
-    top: 22px;;
+    top: 82px;;
     left: -18px;
     padding:0;
-    border-right: 9px solid #cccccc;
+    border-right: 9px solid #acacac;
     border-top:9px solid transparent;
     border-bottom:9px solid transparent;
     border-left:9px solid transparent;
@@ -137,7 +164,7 @@ li{
 }
 li .cover:hover + .info .moreMeta{
     display: block;
-} */
+}
 
 h4 {
     margin: 0;
