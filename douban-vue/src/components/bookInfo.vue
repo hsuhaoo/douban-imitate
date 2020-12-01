@@ -1,17 +1,16 @@
 <template>
     <div>
-        <SectionNav title='图书资讯' slide="slide" @renderul='renderul'></SectionNav>
+        <SectionNav title='图书资讯' slide="slide" @renderul='renderul' :selectIndex="barCount"></SectionNav>
         <div class="infoContent">
-            <a href="https://book.douban.com/review/12941655/">
+            <a :href="newData.href">
             <div class="content">
-                <span class="title">我完成我以完成你</span>
-                <span class="meta">乐府文化</span>
+                <span class="title">{{newData.title}}</span>
+                <span class="meta">{{newData.meta}}</span>
                 <p class="abstract">
-                文：郭初阳 成为语文老师纯属偶然。
-                小学的时候我拔尖的是数学，那会儿有珠算课，上学放学除了书包还要带一个算盘，用一根带子串起两头，斜跨在肩上颇为威风，仿佛一杆冲锋枪——我的算盘打得飞快，从一开始，加...
+                {{newData.abstract}}
                 </p>
             </div>
-            <div class="cover" style="background-image: url(https://img1.doubanio.com/view/subject/l/public/s33705199.jpg)"
+            <div class="cover" :style="newData.style"
             ></div>
             </a>
         </div>
@@ -19,29 +18,46 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
+    let info_list = require('../data/bookInfo')
     export default{
         name:"BookInfo",
         data(){
             return{
                 slide : true,    
+                barCount: 0,
             }
         },
         components:{
             SectionNav,
         },
         methods: {
-            renderul: ()=>{
-                // let a = ul_list[0];
-                // console.log(a);
-                console.log("aaaa");
+            renderul: function(val){
+                if(val==='prev'){
+                    if(this.barCount>0){
+                        this.barCount -= 1;
+                    }
+                    else{
+                        this.barCount = 3;
+                    }
+                }
+                else{
+                    if(this.barCount<3){
+                        this.barCount += 1;
+                    }
+                    else{
+                        this.barCount = 0;
+                    }
+                }
+            }
+        },
+        computed: {
+            newData:  function(){
+                return info_list[this.barCount];
             }
         }
     }
 </script>
 <style scoped>
-    /* .cover{
-    background-image: url(https://img1.doubanio.com/view/subject/l/public/s33705199.jpg)
-    } */
     .cover{
         width: 96px;
         height: 96px;

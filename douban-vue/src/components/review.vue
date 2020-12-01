@@ -7,15 +7,15 @@
         <div class="reviews-bd">
             <div class="review " v-for="(item,index) in items" :key="index">
                 <div class="review-hd">
-                    <a href="https://book.douban.com/review/12967087/">
-                        <img src="https://img2.doubanio.com/view/subject/m/public/s33741322.jpg" alt="达尔文的正确打开方式：一生坚持投身所爱">
+                    <a :href="dataList[index].href">
+                        <img :src="dataList[index].src" :alt="dataList[index].title">
                     </a>
                 </div>
                 <div class="review-bd">
-                    <h3><a href="https://book.douban.com/review/12967087/">达尔文的正确打开方式：一生坚持投身所爱</a></h3>
+                    <h3><a :href="dataList[index].href">{{dataList[index].title}}</a></h3>
                     <div class="review-meta">
-                        <a href="https://www.douban.com/people/50021732/">新经典</a> 评论
-                        <a href="https://book.douban.com/review/12967087/">《物种起源》</a>
+                        <a :href="dataList[index].href">{{dataList[index].author}}</a> 评论
+                        <a :href="dataList[index].author_href">{{dataList[index].book}}</a>
                         <ul class="star">
                             <li>★</li>
                             <li>★</li>
@@ -25,9 +25,8 @@
                         </ul>
                     </div>
                     <div class="review-content">
-                        你肯定知道他。 他和林肯同一天出生，不过比林肯有钱加幸运太多太多了。 严格意义上的富三代
-                        他的外祖父是响当当的瓷器厂创办人，超有钱大资本家；祖父是自然科学家兼诗人，两个好友约好让漂亮女儿和优秀医生儿子...
-                        <a href="https://book.douban.com/review/12967087/">(全文)</a>
+                        {{dataList[index].content.replace("(全文)","")}}
+                        <a :href="dataList[index].href">(全文)</a>
                     </div>
                 </div>
             </div>
@@ -38,12 +37,13 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
+    let dataList = require('../data/review')
     export default{
         name:"Review",
         data(){
             return{
                 items : [...Array(4).keys()],
-                infos : ['下载豆瓣客户端', '登录/注册']
+                dataList: dataList,
             }
         },
         components:{

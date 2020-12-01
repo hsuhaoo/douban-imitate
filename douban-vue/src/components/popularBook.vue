@@ -13,41 +13,43 @@
             data-dstat-areaid="61" data-dstat-mode="click,expose">
             <li class="" v-for="(item,index) in items" :key="index">
                 <div class="cover">
-                <a onclick="" href="https://book.douban.com/subject/35005045/?icn=index-topchart-subject">
-                    <img src="https://img3.doubanio.com/view/subject/s/public/s33718940.jpg"
-                    alt="夜晚的潜水艇" class="">
+                <a onclick="" :href="dataList[index].href">
+                    <img :src="dataList[index].src"
+                    :alt="dataList[index].title" class="">
                 </a>
                 </div>
                 <div class="info">
-                <h4 class="title">
-                    <a onclick=""
-                    href="https://book.douban.com/subject/35005045/?icn=index-topchart-subject" class="">夜晚的潜水艇</a>
-                </h4>
-                <p class="entry-star-small">
-                    <ul class="star">
-                        <li>★</li>
-                        <li>★</li>
-                        <li>★</li>
-                        <li>★</li>
-                        <li>★</li>
-                    </ul>
-                    <span class="average-rating">
-                    9.0
-                    </span>
-                </p>
-                <p class="author">
-                    作者：陈春成
-                </p>
-                <p class="book-list-classification">
-                    短篇小说&nbsp;/&nbsp;中国文学
-                </p>
-                <p class="extra-info">
-                    
-                </p>
+                    <h4 class="title">
+                        <a onclick=""
+                        :href="dataList[index].href" class="">{{dataList[index].title}}</a>
+                    </h4>
+                    <p class="entry-star-small">
+                        <ul class="star">
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                        </ul>
+                        <span class="average-rating">
+                            {{dataList[index].rating}}
+                        </span>
+                    </p>
+                    <p class="author">
+                        {{dataList[index].author}}
+                    </p>
+                    <p class="book-list-classification">
+                        {{dataList[index].classification}}
+                    </p>
+                    <p class="extra-info">
+                        <span class="meta-label" v-if="dataList[index].extra">
+                            有电子书
+                          </span>
+                    </p>
                 </div>
                     <p class="reviews">
-                    在看不见硝烟的生活里，这本书能带给你安宁
-                    (<a onclick="moreurl(this, {from:'pop_fiction'})" href="https://book.douban.com/review/12909258/?icn=index-topchart-subject">单读评论</a>)
+                    {{dataList[index].reviews.replace("()","")}}
+                    (<a onclick="moreurl(this, {from:'pop_fiction'})" :href="dataList[index].reviews_href">{{dataList[index].reviews_text}}</a>)
                     </p>
             </li>
           </ul>
@@ -56,46 +58,66 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
+    let dataList = require('../data/popularBook')
     export default{
         name:"PopularBook",
         data(){
             return{
                 items : [...Array(10).keys()],
-                infos : ['下载豆瓣客户端', '登录/注册']
+                dataList: dataList,
             }
         },
         components:{
             SectionNav,
-        }
+        },
+        // computed:{
+        //     reviewData:  function(){
+        //         let a = this.dataList.map(function(data){
+        //             return data.reviews.slice(0,-2);
+        //         });
+        //         console.log(a);
+        //         return this.dataList;
+        //     }
+        // },
     }
     </script>
 
 <style scoped>
 .list-col {
     list-style: none;
-    width: 100%;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-column-gap: 9px;
+    width: 660px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
-
+.cover{
+    height: 120px;
+}
 a{
     color: #3377aa;
 }
 .list-col li{
+    width: 330px;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 .info {
     margin: 0 20px;
+    max-width: 200px;
+    height: 120px;
 }
 .star{
     display: inline-block;
 }
 .star li {
+    width: 13px;
     display: inline-block;
+}
+p{
+    margin: 0;
 }
 .reviews{
     flex-basis: 100%;
@@ -103,11 +125,11 @@ a{
     padding-top: 15px;
 }
 img{
-    width: 82px;  
-    height: auto;
+    width: auto;  
+    height: 120px;
 }
 .moreMeta{
-        display: none;
+    display: none;
 }
 .title {
     font-size: 15px;
@@ -117,5 +139,9 @@ img{
 .title a:hover, .reviews a:hover{
     background-color: #37a;
     color: white;
+}
+.meta-label{
+    color: white;
+    background: #a1a1a1;
 }
 </style>

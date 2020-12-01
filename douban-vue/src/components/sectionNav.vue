@@ -20,10 +20,10 @@
             </li>
             </div>
             <div class="slideBtns">
-            <a href="#" class="prev" @click="$emit('renderul', 'prev')">
+            <a class="prev" @click="$emit('renderul', 'prev')">
                 &#8249;
             </a>
-            <a href="#" class="prev" @click="$emit('renderul', 'next')">
+            <a class="prev" @click="$emit('renderul', 'next')">
                 &#8250;
             </a>
             </div>
@@ -88,6 +88,7 @@
         outline: none;
         border-radius: 9px;
         background: #9b9a8e;
+        cursor: pointer;
     }
     a.prev:hover {
         background-color: #afaea5;

@@ -7,11 +7,11 @@
         </SectionNav>
         <ul class="list5">
             <li v-for="(item,index) in items" :key="index">
-                <div class="cover">
+                <div class="cover " >
                 <a
                     :href="newData[index].href"
                 >
-                    <img :src="newData[index].src" class="img" :alt="newData[index].title" />
+                    <img :src="newData[index].src"  :alt="newData[index].title" />
                 </a>
                 </div>
                 <div class="info">
@@ -90,10 +90,9 @@
     align-items: flex-end;
     flex-wrap: wrap;
     height: 450px;
-    overflow: hidden;
 }
 
-.img{
+img{
     width: 100px;  
     height: auto;
 }

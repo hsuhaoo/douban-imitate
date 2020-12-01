@@ -25,15 +25,15 @@
               
               <li v-for="(item,index) in items" :key="index">
                 <div class="cover">
-                  <a href="https://market.douban.com/book/liubo?utm_campaign=book_freyr_section&amp;utm_source=douban&amp;utm_medium=pc_web" target="_blank">
-                    <img src="https://qnmob3.doubanio.com/view/freyr_page_photo/raw/public/6836.jpg?imageView2/2/q/80/w/212/h/280/format/png" width="106" height="140" alt="刘勃历史三部曲"/>
+                  <a :href="dataList[index].href" target="_blank">
+                    <img :src="dataList[index].src" width="106" height="140" :alt="dataList[index].title"/>
                   </a>
                 </div>
                 <div class="info">
                   <div class="title">
-                    <a href="https://market.douban.com/book/liubo?utm_campaign=book_freyr_section&amp;utm_source=douban&amp;utm_medium=pc_web" target="_blank">刘勃历史三部曲</a>
+                    <a :href="dataList[index].href" target="_blank">{{dataList[index].title}}</a>
                   </div>
-                  <div class="price">￥88.00</div>
+                  <div class="price">{{dataList[index].price}}</div>
                 </div>
               </li>
           </ul>
@@ -43,12 +43,13 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
+    let dataList = require('../data/marketBook')
     export default{
         name:"Market",
         data(){
             return{
                 items : [...Array(5).keys()],
-                infos : ['下载豆瓣客户端', '登录/注册']
+                dataList: dataList,
             }
         },
         components:{
@@ -59,12 +60,23 @@
 
 <style scoped>
 ul {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-column-gap: 9px;
-    list-style: none;
-
+    width: 660px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+/* li{
+  width: 120px;
+  padding-right: 12px;
+}
+li :nth-last-child(1){
+  padding-right:0px;
+} */
+li .info .title{
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .top .title{
   font-size: 23px;

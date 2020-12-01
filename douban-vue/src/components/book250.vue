@@ -10,13 +10,13 @@
                 
           <dl v-for="(item,index) in items" :key="index">
             <dt>
-              <a onclick="" href="https://book.douban.com/subject/1963912/?icn=index-book250-subject">
-                <img src="https://img3.doubanio.com/view/subject/s/public/s1993421.jpg" class="m_sub_img">
+              <a onclick="" :href="dataList[index].href">
+                <img :src="dataList[index].src" class="m_sub_img">
               </a>
             </dt>
             <dd>
-              <a onclick="" href="https://book.douban.com/subject/1963912/?icn=index-book250-subject">
-                正见
+              <a onclick="" :href="dataList[index].href">
+                {{dataList[index].title}}
               </a>
               <p class="extra-info">
                 
@@ -33,12 +33,13 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
+    let dataList = require('../data/book250')
     export default{
         name:"Book250",
         data(){
             return{
                 items : [...Array(9).keys()],
-                infos : ['下载豆瓣客户端', '登录/注册']
+                dataList: dataList,
             }
         },
         components:{
@@ -49,10 +50,11 @@
 
 <style scoped>
 .content {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 33.3%);
-    grid-column-gap: 9px;
+    width: 330px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 }
 
@@ -63,20 +65,25 @@ img{
 dd {
   margin: 0;
 }
+dd{
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 dd a:hover{
     background-color: #37a;
     color: white;
 }
-.more-meta{
-        display: none;
-}
+
 .link-more{
         font-size: 13px;
         color: #3377aa;
         margin: 15px;
 }
 .meta-label{
-  display: none;
+    color: white;
+    background: #a1a1a1;
 }
 
 </style>

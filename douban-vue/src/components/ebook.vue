@@ -19,42 +19,41 @@
             <ul class="list-col5">
                 <li class="" v-for="(item,index) in items" :key="index">
                     <div class="cover">
-                        <a href="https://read.douban.com/ebook/163314997/?dcs=book-hot&amp;dcm=douban&amp;dct=read-subject"
+                        <a :href="dataList[index].href"
                             target="_blank" >
-                            <img src="https://img1.doubanio.com/view/ark_article_cover/retina/public/163314997.jpg?v=1604977761"
-                                alt="人类善恶小史" width="106px" height="158px">
+                            <img :src="dataList[index].src"
+                                :alt="dataList[index].title" width="106px" height="158px">
                         </a>
                     </div>
                     <div class="info">
                         <div class="title">
-                            <a href="https://read.douban.com/ebook/163314997/?dcs=book-hot&amp;dcm=douban&amp;dct=read-subject"
-                                title="人类善恶小史" target="_blank">
-                                人类善恶小史
+                            <a :href="dataList[index].href"
+                                :title="dataList[index].title" target="_blank">
+                                {{dataList[index].title}}
                             </a>
                         </div>
                         <div class="price">
-                            17.99元
+                            {{dataList[index].price}}
                         </div>
                         <div class="more-meta">
                             <h4 class="title">
-                                人类善恶小史
+                                {{dataList[index].title}}
                             </h4>
                             <p>
                                 <span class="author">
                                     Tsevan Rabtan / Alejandra Acosta
                                 </span> / <span class="year">
-                                    2020-10
+                                    {{dataList[index].year}}
                                 </span> / <span class="publisher">
-                                    浦睿文化·湖南⼈民出版社
+                                    {{dataList[index].publisher}}
                                 </span> / <span class="price">
 
-                                    17.99元
+                                    {{dataList[index].price}}
 
                                 </span>
                             </p>
                             <p class="abstract">
-                                人类史上既有侵略、屠杀、殖民在内的种种罪恶行径，又有闪耀着救援、互助、传承等光辉的动人故事。《人类善恶小史》以30余位大人物在关键时刻的抉择切入，检视人类的善恶抉择以及导致的结果。
-                                1940年，多国外交官顶着纳粹德国的巨大压力，为犹太人提供进入本国的签证，挽救了万千犹太人的性命。1862年，因解放黑奴名垂千史的林肯，在一封信中写道：“如果我能拯救联...
+                                {{dataList[index].abstract}}
                             </p>
                         </div>
                     </div>
@@ -66,12 +65,14 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
+    let dataList = require('../data/eBook')
+
     export default{
         name:"EBook",
         data(){
             return{
                 items : [...Array(10).keys()],
-                infos : ['下载豆瓣客户端', '登录/注册']
+                dataList: dataList,
             }
         },
         components:{
@@ -82,19 +83,23 @@
 
 <style scoped>
 .list-col5 {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-column-gap: 9px;
+    width: 660px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 }
 
-.img{
-    width: 100px;  
-    height: auto;
+li{
+    min-width: 120px;
 }
-
-
+li .info .title{
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 h3 {
     font-weight: normal;
     font-size: 15px;
