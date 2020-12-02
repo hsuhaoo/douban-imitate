@@ -64,19 +64,22 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center bottom;
+        display: inline-block;
     }
     a {
-        display: flex;
+        /* display: flex; */
         text-decoration: none;
     }
+    .content{
+        display: inline-block;
+        width: 507px;
+    }
     .infoContent{
-        width: 100%;
         border: solid 1px #ddd;
         border-radius: 2px;
         padding: 25px;
         box-sizing: border-box;
         margin-bottom: 4px;
-        display: flex;
         
     }
     .section{

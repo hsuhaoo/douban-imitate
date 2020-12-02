@@ -20,7 +20,7 @@
               </a>
               <p class="extra-info">
                 
-                <span class="meta-label">
+                <span class="meta-label"  v-if="dataList[index].extra">
                     有电子书
                   </span>
               </p>

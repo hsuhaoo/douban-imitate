@@ -24,13 +24,14 @@
                         :href="dataList[index].href" class="">{{dataList[index].title}}</a>
                     </h4>
                     <p class="entry-star-small">
-                        <ul class="star">
+                        <!-- <ul class="star">
                             <li>★</li>
                             <li>★</li>
                             <li>★</li>
                             <li>★</li>
                             <li>★</li>
-                        </ul>
+                        </ul> -->
+                        <Star :score="dataList[index].rating/2"/>
                         <span class="average-rating">
                             {{dataList[index].rating}}
                         </span>
@@ -58,6 +59,7 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
+    import Star from './star.vue'
     let dataList = require('../data/popularBook')
     export default{
         name:"PopularBook",
@@ -69,6 +71,7 @@
         },
         components:{
             SectionNav,
+            Star,
         },
         // computed:{
         //     reviewData:  function(){

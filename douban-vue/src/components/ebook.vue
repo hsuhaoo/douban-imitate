@@ -93,6 +93,7 @@
 
 li{
     min-width: 120px;
+    margin-bottom: 20px;
 }
 li .info .title{
   max-width: 110px;

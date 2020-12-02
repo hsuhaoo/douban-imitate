@@ -85,6 +85,7 @@ li .info .title{
 }
 .top{
   display: flex;
+  margin-bottom: 30px;
 }
 .pic{
   width: 130px;

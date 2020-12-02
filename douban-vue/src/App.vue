@@ -2,36 +2,13 @@
   <div id="app">
     <Nav/>
     <Header/>
-    <div class="container">
-      <div class="main">
-        <NewBook/>
-        <BookInfo/>
-        <PopularBook/>
-        <Market/>
-        <Ebook/>
-        <Review/>
-      </div>
-      <div class="aside">
-        <Tag/>
-        <TopBook/>
-        <Book250/>
-      </div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Nav from './components/nav.vue'
 import Header from './components/header.vue'
-import NewBook from './components/newBook.vue'
-import BookInfo from './components/bookInfo.vue'
-import PopularBook from './components/popularBook.vue'
-import Ebook from './components/ebook.vue'
-import Review from './components/review.vue'
-import Market from './components/market.vue'
-import Tag from './components/tag.vue'
-import Book250 from './components/book250.vue'
-import TopBook from './components/topBook.vue'
 
 
 
@@ -41,15 +18,6 @@ export default {
   components: {
     Nav,
     Header,
-    NewBook,
-    BookInfo,
-    PopularBook,
-    Ebook,
-    Review,
-    Market,
-    Tag,
-    Book250,
-    TopBook
   }
 }
 </script>
