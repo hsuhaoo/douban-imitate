@@ -24,13 +24,6 @@
                         :href="dataList[index].href" class="">{{dataList[index].title}}</a>
                     </h4>
                     <p class="entry-star-small">
-                        <!-- <ul class="star">
-                            <li>★</li>
-                            <li>★</li>
-                            <li>★</li>
-                            <li>★</li>
-                            <li>★</li>
-                        </ul> -->
                         <Star :score="dataList[index].rating/2"/>
                         <span class="average-rating">
                             {{dataList[index].rating}}

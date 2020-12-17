@@ -3,3 +3,9 @@ node_modules/
 react-test/node_modules/
 react-test/dist/
 douban-vue/node_modules/
+douban-vue/dist/
+douban-vue/src/assets/picture/
+douban-mobile/node_modules/
+douban-mobile/dist/
+douban-mobile/src/assets/picture/
+douban-express/
