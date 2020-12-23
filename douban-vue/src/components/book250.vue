@@ -11,7 +11,7 @@
           <dl v-for="(item,index) in items" :key="index">
             <dt>
               <a onclick="" :href="dataList[index].href">
-                <img :src="dataList[index].src" class="m_sub_img">
+                <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)" class="m_sub_img">
               </a>
             </dt>
             <dd>

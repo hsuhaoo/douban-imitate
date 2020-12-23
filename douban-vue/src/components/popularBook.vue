@@ -14,7 +14,7 @@
             <li class="" v-for="(item,index) in items" :key="index">
                 <div class="cover">
                 <a onclick="" :href="dataList[index].href">
-                    <img :src="dataList[index].src"
+                    <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
                     :alt="dataList[index].title" class="">
                 </a>
                 </div>

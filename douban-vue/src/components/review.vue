@@ -8,7 +8,7 @@
             <div class="review " v-for="(item,index) in items" :key="index">
                 <div class="review-hd">
                     <a :href="dataList[index].href">
-                        <img :src="dataList[index].src" :alt="dataList[index].title">
+                        <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)" :alt="dataList[index].title">
                     </a>
                 </div>
                 <div class="review-bd">

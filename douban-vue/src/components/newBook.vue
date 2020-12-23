@@ -5,34 +5,67 @@
                 <a class="" href="/latest?icn=index-latestbook-all">更多»</a>
             </span>
         </SectionNav>
-        <ul class="list5">
-            <li v-for="(item,index) in items" :key="index">
+        <ul class="list5" ref="ul1">
+            <li v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover " >
                 <a
-                    :href="newData[index].href"
+                    :href="ulData1[index].href"
                 >
-                    <img :src="newData[index].src"  :alt="newData[index].title" />
+                    <img :src="'../../picture/'+ulData1[index].src.split('/').slice(-1)"  :alt="ulData1[index].title" @mouseenter='hover'/>
                 </a>
                 </div>
                 <div class="info">
                     <div class="title">
                         <a
-                        :href="newData[index].href"
-                        :title="newData[index].title"
+                        :href="ulData1[index].href"
+                        :title="ulData1[index].title"
                         >
-                        {{newData[index].title}}
+                        {{ulData1[index].title}}
                         </a>
                     </div>
-                    <div class="author">{{newData[index].author}}</div>
+                    <div class="author">{{ulData1[index].author}}</div>
                     <div class="moreMeta">
-                        <h4 class="title">{{newData[index].title}}</h4>
+                        <h4 class="title">{{ulData1[index].title}}</h4>
                         <p>
-                        <span class="author">{{newData[index].author}}</span>/
-                        <span class="year">{{newData[index].year}}</span>/
-                        <span class="publisher">{{newData[index].publisher}}</span>
+                        <span class="author">{{ulData1[index].author}}</span>/
+                        <span class="year">{{ulData1[index].year}}</span>/
+                        <span class="publisher">{{ulData1[index].publisher}}</span>
                         </p>
                         <p class="abstract">
-                        {{newData[index].abstrct}}
+                        {{ulData1[index].abstrct}}
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="list5" ref="ul2">
+            <li v-for="(item,index) in items" :key="index" ref="li">
+                <div class="cover " >
+                <a
+                    :href="ulData2[index].href"
+                >
+                    <img :src="'../../picture/'+ulData2[index].src.split('/').slice(-1)"  :alt="ulData2[index].title" />
+                </a>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a
+                        :href="ulData2[index].href"
+                        :title="ulData2[index].title"
+                        >
+                        {{ulData2[index].title}}
+                        </a>
+                    </div>
+                    <div class="author">{{ulData2[index].author}}</div>
+                    <div class="moreMeta">
+                        <h4 class="title">{{ulData2[index].title}}</h4>
+                        <p>
+                        <span class="author">{{ulData2[index].author}}</span>/
+                        <span class="year">{{ulData2[index].year}}</span>/
+                        <span class="publisher">{{ulData2[index].publisher}}</span>
+                        </p>
+                        <p class="abstract">
+                        {{ulData2[index].abstrct}}
                         </p>
                     </div>
                 </div>
@@ -47,9 +80,10 @@
         name:"NewBook",
         data(){
             return{
-                items : [...Array(10).keys()],
+                items : [...Array(20).keys()],
                 slide : true, 
                 barCount: 0,
+                opacity: [],
             }
         },
         components:{
@@ -73,12 +107,67 @@
                         this.barCount = 0;
                     }
                 }
+                this.$refs.li.forEach((list)=>{
+                    list.style.opacity = "1";
+                });
+                this.$refs.ul1.style.overflow = "hidden";
+                this.$refs.ul2.style.overflow = "hidden";
+                this.animate(this.$refs.li);
+                
+            },
+            animate: function(li){
+                var offset = 660;
+                var time = 300;
+                var inteval = 10;
+                var speed = offset / (time / inteval);
+                var newLeft = -this.barCount*660;
+                // let range = (start, end) => Array(end - start).fill(0).map((v, i) => i + start);
+                // let display = range(this.barCount*5,this.barCount*5+5).concat(range(this.barCount*5+20,this.barCount*5+25));
+                let currentLeft = -this.barCount*660 + 660;
+                let go=()=>
+                {
+                    if ( (speed > 0 && currentLeft > newLeft)) {
+                        
+                        li.forEach((list)=>{
+                            list.style.left = currentLeft - speed + 'px';
+                        });
+                        currentLeft = currentLeft - speed;
+                        setTimeout(go, inteval);
+                    }
+                }
+                go();
+
+            },
+            hover: function(){
+                let range = (start, end) => Array(end - start).fill(0).map((v, i) => i + start);
+                let display = range(this.barCount*5,this.barCount*5+5).concat(range(this.barCount*5+20,this.barCount*5+25));
+                this.$refs.li.forEach((list, index)=>{
+                    if(!display.includes(index)){
+                        list.style.opacity = "0";
+                    }
+                    else{
+                        list.style.opacity = "1";
+                    }
+                });
+                this.$refs.ul1.style.overflow = "visible";
+                this.$refs.ul2.style.overflow = "visible";
             }
         },
         computed: {
-            newData:  function(){
-                return ul_list[this.barCount];
-            }
+            ulData1:  function(){
+                let dataList = [];
+                for(const ul of ul_list){
+                    dataList = dataList.concat(ul.slice(0,5))
+                }
+                return dataList;
+            },
+            ulData2:  function(){
+                let dataList = [];
+                for(const ul of ul_list){
+                    dataList = dataList.concat(ul.slice(5,10))
+                }
+                return dataList;
+            },
         }
     }
     </script>
@@ -88,29 +177,36 @@
     width: 660px;
     display: flex;
     align-items: flex-end;
-    flex-wrap: wrap;
-    height: 450px;
+    /* flex-wrap: wrap; */
+    height: 225px;
+    /* overflow: hidden; */
 }
 
 img{
     width: 100px;  
     height: auto;
 }
+
 li{
     position: relative;
     margin: 0 40px 15px 0;
     width: 100px;
+    /* left: -660px; */
     /* height: 200px; */
 }
 li:nth-child(5n){
     margin: 0 0 15px 0;
     padding: 0;
 }
+li:nth-child(n+6){
+    opacity: 0;
+}
 .info > .author, .info > .title{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .moreMeta{
     display: none;
     position: absolute;

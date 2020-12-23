@@ -18,7 +18,16 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
-    let info_list = require('../data/bookInfo')
+    let info_list = require('../data/bookInfo');
+    info_list.forEach((data)=>{
+        try {
+            let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
+            data.style.replace(uri,uri.split('/').slice(-1));
+        }
+        catch(err){
+            console.log(err);
+        }
+    })
     export default{
         name:"BookInfo",
         data(){

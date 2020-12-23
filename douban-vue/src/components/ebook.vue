@@ -21,7 +21,7 @@
                     <div class="cover">
                         <a :href="dataList[index].href"
                             target="_blank" >
-                            <img :src="dataList[index].src"
+                            <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
                                 :alt="dataList[index].title" width="106px" height="158px">
                         </a>
                     </div>
