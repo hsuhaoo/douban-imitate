@@ -126,16 +126,26 @@
     </div>
 </template>
 <script>
+    const axios = require('axios');
     export default{
         name:"Subject",
         data(){
             return{
+                ready:false,
+                dataList: {}
             }
         },
         mounted(){
-            let dataList = require('../data/subject_json/'+this.$route.params.id+'.json');
-            this.dataList = dataList;
-            this.ready = true;
+            axios
+            .get('http://localhost:8081/subject/'+this.$route.params.id,{
+                responseType: 'json'
+                })
+            .then(response => {
+                console.log(typeof response.data);
+                this.dataList = response.data;
+                this.ready = true;
+            });
+            console.log(this.dataList);
         }
         
     }

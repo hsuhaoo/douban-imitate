@@ -79,21 +79,21 @@
         mounted() {
             let dataList = require('../data/tag_json/'+this.$route.params.id+'.json');
             this.dataList = dataList;
-            let id = encodeURI(encodeURI(this.$route.params.id));
-            axios
-            .get('http://localhost:8081/pic/'+id,{
-                responseType: 'json'
-                })
-            .then(response => {
-                console.log(response.data);
-                let reader = new FileReader()
-                reader.onload = (e) => {
-                    this.picList.push(e.target.result);
-                }
-                for(let data of JSON.parse(response.data)){
-                    reader.readAsDataURL(data);
-                }
-            });
+            // let id = encodeURI(encodeURI(this.$route.params.id));
+            // axios
+            // .get('http://localhost:8081/pic/'+id,{
+            //     responseType: 'json'
+            //     })
+            // .then(response => {
+            //     console.log(response.data);
+            //     let reader = new FileReader()
+            //     reader.onload = (e) => {
+            //         this.picList.push(e.target.result);
+            //     }
+            //     for(let data of JSON.parse(response.data)){
+            //         reader.readAsDataURL(data);
+            //     }
+            // });
             // axios
             // .get('https://img3.doubanio.com/view/subject/s/public/s27264181.jpg',{
             //     responseType: 'blob'

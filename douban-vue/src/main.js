@@ -5,9 +5,11 @@ import Stag from "./components/stag.vue"
 import Index from "./components/Index.vue"
 import Subject from "./components/subject.vue"
 import Review from "./components/sreview.vue"
+import axios from 'axios'
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
+Vue.prototype.$axios=axios;
 
 let router = new VueRouter({
   routes: [

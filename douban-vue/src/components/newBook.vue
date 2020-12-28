@@ -5,13 +5,13 @@
                 <a class="" href="/latest?icn=index-latestbook-all">更多»</a>
             </span>
         </SectionNav>
-        <ul class="list5" ref="ul1">
+        <ul class="list5" ref="ul1" v-if="ready">
             <li v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover " >
                 <router-link
                     :to="'/subject/'+ulData1[index].href.split('/').slice(-2,-1)"
                 >
-                    <img :src="'../../picture/'+ulData1[index].src.split('/').slice(-1)"  :alt="ulData1[index].title" @mouseenter='hover' @mouseleave='hoverend'/>
+                    <img :src="'../../picture/'+ulData1[index].src.split('/').slice(-1)"  :alt="dataList[index].title" @mouseenter='hover' @mouseleave='hoverend'/>
                 </router-link>
                 </div>
                 <div class="info">
@@ -20,19 +20,19 @@
                         :to="'/subject/'+ulData1[index].href.split('/').slice(-2,-1)"
                         :title="ulData1[index].title"
                         >
-                        {{ulData1[index].title}}
+                        {{dataList[index].title}}
                         </router-link>
                     </div>
-                    <div class="author">{{ulData1[index].author}}</div>
+                    <div class="author">{{dataList[index]["作者"]}}</div>
                     <div class="moreMeta">
-                        <h4 class="title">{{ulData1[index].title}}</h4>
+                        <h4 class="title">{{dataList[index].title}}</h4>
                         <p>
-                        <span class="author">{{ulData1[index].author}}</span>/
-                        <span class="year">{{ulData1[index].year}}</span>/
-                        <span class="publisher">{{ulData1[index].publisher}}</span>
+                        <span class="author">{{dataList[index]["作者"]}}</span>/
+                        <span class="year">{{dataList[index]["出版年"]}}</span>/
+                        <span class="publisher">{{dataList[index]["出版社"]}}</span>
                         </p>
                         <p class="abstract">
-                        {{ulData1[index].abstrct}}
+                        {{dataList[index].introSummary}}
                         </p>
                     </div>
                 </div>
@@ -74,8 +74,8 @@
     </div>
 </template>
 <script>
-    import SectionNav from './sectionNav.vue'
-    let ul_list = require('../data/newBook')
+    import SectionNav from './sectionNav.vue';
+    let ul_list = require('../data/newBook');
     export default{
         name:"NewBook",
         data(){
@@ -84,7 +84,13 @@
                 slide : true, 
                 barCount: 0,
                 opacity: [],
+                dataList: [],
+                getCount: 0,
+                ready:false,
             }
+        },
+        mounted(){
+            this.getData();
         },
         components:{
             SectionNav,
@@ -154,6 +160,19 @@
             hoverend: function(){
                 this.$refs.ul1.style.overflow = "hidden";
                 this.$refs.ul2.style.overflow = "hidden";
+            },
+            getData: function () {
+                this.$axios.all(this.ulData1.map(elem => {
+                    return this.$axios
+                        .get('http://localhost:8081/subject/' + elem.href.split('/').slice(-2, -1), {
+                            responseType: 'json'
+                        });
+                }))
+                    .then(response => {
+                        this.dataList = response.map(elem => elem.data);
+                        console.log(this.dataList);
+                        this.ready = true;
+                    });
             }
         },
         computed: {
