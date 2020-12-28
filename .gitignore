@@ -5,6 +5,7 @@ react-test/dist/
 douban-vue/node_modules/
 douban-vue/dist/
 douban-vue/src/assets/picture/
+douban-vue/src/data/
 douban-vue/public/picture/
 douban-mobile/node_modules/
 douban-mobile/dist/

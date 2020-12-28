@@ -2,7 +2,7 @@
   <div id="app">
     <Nav/>
     <Header/>
-    <router-view></router-view>
+    <router-view ></router-view>
   </div>
 </template>
 
@@ -18,7 +18,12 @@ export default {
   components: {
     Nav,
     Header,
-  }
+  },
+  // computed: {
+  //   key() {
+  //   return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date();
+  //   }
+  // }
 }
 </script>
 

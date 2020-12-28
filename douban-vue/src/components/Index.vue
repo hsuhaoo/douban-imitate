@@ -51,6 +51,7 @@
       width: 1040px;
       margin: 0 auto;
       display: flex;
+      overflow: hidden;
   }
   .main{
       flex:2;

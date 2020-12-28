@@ -8,20 +8,20 @@
         <ul class="list5" ref="ul1">
             <li v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover " >
-                <a
-                    :href="ulData1[index].href"
+                <router-link
+                    :to="'/subject/'+ulData1[index].href.split('/').slice(-2,-1)"
                 >
-                    <img :src="'../../picture/'+ulData1[index].src.split('/').slice(-1)"  :alt="ulData1[index].title" @mouseenter='hover'/>
-                </a>
+                    <img :src="'../../picture/'+ulData1[index].src.split('/').slice(-1)"  :alt="ulData1[index].title" @mouseenter='hover' @mouseleave='hoverend'/>
+                </router-link>
                 </div>
                 <div class="info">
                     <div class="title">
-                        <a
-                        :href="ulData1[index].href"
+                        <router-link
+                        :to="'/subject/'+ulData1[index].href.split('/').slice(-2,-1)"
                         :title="ulData1[index].title"
                         >
                         {{ulData1[index].title}}
-                        </a>
+                        </router-link>
                     </div>
                     <div class="author">{{ulData1[index].author}}</div>
                     <div class="moreMeta">
@@ -41,20 +41,20 @@
         <ul class="list5" ref="ul2">
             <li v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover " >
-                <a
-                    :href="ulData2[index].href"
+                <router-link
+                    :to="'/subject/'+ulData2[index].href.split('/').slice(-2,-1)"
                 >
-                    <img :src="'../../picture/'+ulData2[index].src.split('/').slice(-1)"  :alt="ulData2[index].title" />
-                </a>
+                    <img :src="'../../picture/'+ulData2[index].src.split('/').slice(-1)"  :alt="ulData2[index].title" @mouseenter='hover' @mouseleave='hoverend'/>
+                </router-link>
                 </div>
                 <div class="info">
                     <div class="title">
-                        <a
-                        :href="ulData2[index].href"
+                        <router-link
+                        :to="'/subject/'+ulData2[index].href.split('/').slice(-2,-1)"
                         :title="ulData2[index].title"
                         >
                         {{ulData2[index].title}}
-                        </a>
+                        </router-link>
                     </div>
                     <div class="author">{{ulData2[index].author}}</div>
                     <div class="moreMeta">
@@ -110,10 +110,9 @@
                 this.$refs.li.forEach((list)=>{
                     list.style.opacity = "1";
                 });
+                this.animate(this.$refs.li);
                 this.$refs.ul1.style.overflow = "hidden";
                 this.$refs.ul2.style.overflow = "hidden";
-                this.animate(this.$refs.li);
-                
             },
             animate: function(li){
                 var offset = 660;
@@ -151,6 +150,10 @@
                 });
                 this.$refs.ul1.style.overflow = "visible";
                 this.$refs.ul2.style.overflow = "visible";
+            },
+            hoverend: function(){
+                this.$refs.ul1.style.overflow = "hidden";
+                this.$refs.ul2.style.overflow = "hidden";
             }
         },
         computed: {
@@ -179,7 +182,7 @@
     align-items: flex-end;
     /* flex-wrap: wrap; */
     height: 225px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 img{
