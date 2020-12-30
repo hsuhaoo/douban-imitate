@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
-import Stag from "./components/stag.vue"
+// import Stag from "./components/stag.vue"
 import Index from "./components/Index.vue"
 
 Vue.use(VueRouter)
@@ -11,7 +11,7 @@ let router = new VueRouter({
   routes: [
       //一个个对象
       { path: '/', component: Index },
-      { path: '/tag/:id', name:"tag", component: Stag }
+      // { path: '/tag/:id', name:"tag", component: Stag }
   ]
 });
 

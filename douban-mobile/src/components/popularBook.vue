@@ -7,11 +7,11 @@
         </SectionNav>
         <div class="bd">
           <ul class="list-col"
-            data-dstat-areaid="61" data-dstat-mode="click,expose">
-            <li class="" v-for="(item,index) in items" :key="index">
+            data-dstat-areaid="61" data-dstat-mode="click,expose" @touchstart.prevent="movestart($event)" @touchmove="secondmoving($event)">
+            <li class="" v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover">
                 <a onclick="" :href="dataList[index].href">
-                    <img :src="dataList[index].src"
+                    <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
                     :alt="dataList[index].title" class="">
                 </a>
                 </div>
@@ -42,11 +42,38 @@
             return{
                 items : [...Array(10).keys()],
                 dataList: dataList,
+                currentLeft: 0,
             }
         },
         components:{
             SectionNav,
             Star,
+        },
+        methods:{
+            movestart (event) {
+                this.startx = event.changedTouches[0].clientX
+            },
+            secondmoving (event) {
+                this.movingx = event.changedTouches[0].clientX
+                this.distance = (this.movingx - this.startx)/20;
+
+                this.currentLeft += this.distance;
+                this.currentLeft = Math.max(this.currentLeft, -600);
+                this.currentLeft = Math.min(this.currentLeft, 10);
+
+                this.$refs.li.forEach((list)=>{
+                    list.style.left = this.currentLeft + 'px';
+                })
+                // if (this.distance > 0) {
+                //     //左滑
+                //     this.currentLeft =  currentLeft - this.distance
+                //     this.$refs.li.style.left = currentLeft + this.distance) + 'px'
+                // }
+                // if (this.distance < 0) {
+                //     //右滑
+                //     this.$refs.li.style.left = this.distance + 'px'
+                // }  
+            },
         },
         // computed:{
         //     reviewData:  function(){
@@ -72,6 +99,7 @@
     padding: 0;
     display: flex;
     align-items: flex-start;
+    overflow: hidden;
 }
 .cover{
     height: 120px;
@@ -80,6 +108,9 @@
     color: #42bd56;
 }
 .list-col li{
+    position: relative;
+    margin: 0 40px 15px 0;
+    width: 100px;
 }
 .info {
     max-width: 100px;
@@ -94,9 +125,6 @@ p{
 img{
     width: auto;  
     height: 120px;
-}
-.moreMeta{
-    display: none;
 }
 .title {
     font-size: 15px;

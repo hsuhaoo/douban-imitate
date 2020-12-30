@@ -1,13 +1,12 @@
 <template>
   <div id="app">
     <Nav/>
-    <!-- <router-view></router-view> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Nav from './components/nav.vue'
-// import Header from './components/header.vue'
 
 
 

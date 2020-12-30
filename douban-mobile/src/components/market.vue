@@ -10,7 +10,7 @@
           <div class="top">
             <div class="cover">
               <a href="https://market.douban.com/book/rickandmorty?utm_campaign=book_freyr_section&amp;utm_source=douban&amp;utm_medium=pc_web">
-                <div class="pic" style="background-image: url(https://qnmob3.doubanio.com/view/freyr_page_photo/raw/public/6882.jpg?imageView2/2/q/80/w/212/h/280/format.png)"></div>
+                <div class="pic"></div>
               </a>
             </div>
             <div id="market_books_header_info" class="info">
@@ -109,5 +109,8 @@ img{
 .info .title a:hover{
     background-color: #37a;
     color: white;
+}
+.pic{
+  background-image: url('../assets/6882.png');
 }
 </style>

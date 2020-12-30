@@ -5,52 +5,37 @@
                 <a class="" href="/latest?icn=index-latestbook-all">更多»</a>
             </span>
         </SectionNav>
-        <ul class="list5">
-            <li v-for="(item,index) in items" :key="index">
+        <ul class="list5" ref="ul1" v-if="ready">
+            <li v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover " >
-                <a
-                    :href="newData[index].href"
+                <router-link
+                    :to="'/subject/'+ulData1[index].href.split('/').slice(-2,-1)"
                 >
-                    <img :src="newData[index].src"  :alt="newData[index].title" />
-                </a>
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <a
-                        :href="newData[index].href"
-                        :title="newData[index].title"
-                        >
-                        {{newData[index].title}}
-                        </a>
-                    </div>
-                    <div class="author">{{newData[index].author}}</div>
-                    <div class="moreMeta">
-                        <h4 class="title">{{newData[index].title}}</h4>
-                        <p>
-                        <span class="author">{{newData[index].author}}</span>/
-                        <span class="year">{{newData[index].year}}</span>/
-                        <span class="publisher">{{newData[index].publisher}}</span>
-                        </p>
-                        <p class="abstract">
-                        {{newData[index].abstrct}}
-                        </p>
-                    </div>
+                    <img :src="'../../picture/'+ulData1[index].src.split('/').slice(-1)"  :alt="ulData1[index].title" />
+                </router-link>
                 </div>
             </li>
         </ul>
     </div>
 </template>
 <script>
-    import SectionNav from './sectionNav.vue'
-    let ul_list = require('../data/newBook')
+    import SectionNav from './sectionNav.vue';
+    let ul_list = require('../data/newBook');
     export default{
         name:"NewBook",
         data(){
             return{
-                items : [...Array(10).keys()],
+                items : [...Array(20).keys()],
                 slide : true, 
                 barCount: 0,
+                opacity: [],
+                dataList: [],
+                getCount: 0,
+                ready:false,
             }
+        },
+        mounted(){
+            // this.getData();
         },
         components:{
             SectionNav,
@@ -73,12 +58,64 @@
                         this.barCount = 0;
                     }
                 }
-            }
+            },
+            animate: function(li){
+                var offset = 660;
+                var time = 300;
+                var inteval = 10;
+                var speed = offset / (time / inteval);
+                var newLeft = -this.barCount*660;
+                // let range = (start, end) => Array(end - start).fill(0).map((v, i) => i + start);
+                // let display = range(this.barCount*5,this.barCount*5+5).concat(range(this.barCount*5+20,this.barCount*5+25));
+                let currentLeft = -this.barCount*660 + 660;
+                let go=()=>
+                {
+                    if ( (speed > 0 && currentLeft > newLeft)) {
+                        
+                        li.forEach((list)=>{
+                            list.style.left = currentLeft - speed + 'px';
+                        });
+                        currentLeft = currentLeft - speed;
+                        setTimeout(go, inteval);
+                    }
+                }
+                go();
+
+            },
+            getData: function () {
+                this.$axios.all(this.ulData1.map(elem => {
+                    return this.$axios
+                        .get('http://localhost:8081/subject/' + elem.href.split('/').slice(-2, -1), {
+                            responseType: 'json'
+                        });
+                }))
+                    .then(response => {
+                        this.dataList = response.map(elem => elem.data);
+                        console.log(this.dataList);
+                        this.ready = true;
+                    });
+            },
+            secondmoving (event) {
+                this.movingx = event.changedTouches[0].clientX
+                this.distance = this.movingx - this.startx 
+                if (this.distance > 0) {
+                    //左滑
+                    this.$refs.li.style.left = (-innerWidth + this.distance) + 'px'
+                }
+                if (this.distance < 0) {
+                    //右滑
+                    this.$refs.li.style.left = this.distance + 'px'
+                }  
+            },
         },
         computed: {
-            newData:  function(){
-                return ul_list[this.barCount];
-            }
+            ulData1:  function(){
+                let dataList = [];
+                for(const ul of ul_list){
+                    dataList = dataList.concat(ul.slice(0,5))
+                }
+                return dataList;
+            },
         }
     }
     </script>
@@ -88,29 +125,36 @@
     width: 660px;
     display: flex;
     align-items: flex-end;
-    flex-wrap: wrap;
-    height: 450px;
+    /* flex-wrap: wrap; */
+    height: 225px;
+    overflow: hidden;
 }
 
 img{
     width: 100px;  
     height: auto;
 }
+
 li{
     position: relative;
     margin: 0 40px 15px 0;
     width: 100px;
+    /* left: -660px; */
     /* height: 200px; */
 }
 li:nth-child(5n){
     margin: 0 0 15px 0;
     padding: 0;
 }
+li:nth-child(n+6){
+    opacity: 0;
+}
 .info > .author, .info > .title{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .moreMeta{
     display: none;
     position: absolute;

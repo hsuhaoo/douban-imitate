@@ -19,15 +19,6 @@
 <script>
     import SectionNav from './sectionNav.vue'
     let info_list = require('../data/bookInfo');
-    info_list.forEach((data)=>{
-        try {
-            let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
-            data.style.replace(uri,uri.split('/').slice(-1));
-        }
-        catch(err){
-            console.log(err);
-        }
-    })
     export default{
         name:"BookInfo",
         data(){
@@ -61,6 +52,17 @@
         },
         computed: {
             newData:  function(){
+                // console.log(info_list);
+                info_list.forEach(data=>{
+                    try {
+                        let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
+                        data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                });
+                console.log(info_list);
                 return info_list[this.barCount];
             }
         }

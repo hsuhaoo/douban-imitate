@@ -170,7 +170,7 @@
                 }))
                     .then(response => {
                         this.dataList = response.map(elem => elem.data);
-                        console.log(this.dataList);
+                        // console.log(this.dataList);
                         this.ready = true;
                     });
             }
