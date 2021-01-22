@@ -2,7 +2,7 @@
     <div class="block5">    
         <SectionNav title="豆瓣图书250">
             <span class="link-more">
-                <a class="" href="/top250?icn=index-book250-all">更多»</a>
+                <router-link class="" to="/page/top">更多»</router-link>
             </span>
         </SectionNav>
           

@@ -2,10 +2,10 @@
     <div class="popular-books">
         <SectionNav title="最受关注图书榜">
             <span class="link-more">
-                <a href="/chart?subcat=F&amp;icn=index-topchart-fiction">虚构类»</a>
+                <router-link to="/page/unreal">虚构类»</router-link>
               </span>
               <span class="link-more">
-                <a href="/chart?icn=index-topchart-nonfiction">非虚构类»</a>
+                <router-link to="/page/real">非虚构类»</router-link>
             </span>
         </SectionNav>
         <div class="bd">

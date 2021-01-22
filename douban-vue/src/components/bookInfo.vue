@@ -1,7 +1,7 @@
 <template>
     <div>
         <SectionNav title='图书资讯' slide="slide" @renderul='renderul' :selectIndex="barCount"></SectionNav>
-        <div class="infoContent">
+        <div class="infoContent" v-if="ready">
             <a :href="newData.href">
             <div class="content">
                 <span class="title">{{newData.title}}</span>
@@ -25,7 +25,12 @@
             return{
                 slide : true,    
                 barCount: 0,
+                ready: false,
             }
+        },
+        mounted() {
+            this.uriProcess();
+            this.ready = true;
         },
         components:{
             SectionNav,
@@ -48,11 +53,8 @@
                         this.barCount = 0;
                     }
                 }
-            }
-        },
-        computed: {
-            newData:  function(){
-                // console.log(info_list);
+            },
+            uriProcess: function() {
                 info_list.forEach(data=>{
                     try {
                         let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
@@ -62,7 +64,21 @@
                         console.log(err);
                     }
                 });
-                console.log(info_list);
+            }
+        },
+        computed: {
+            newData:  function(){
+                // console.log(info_list);
+                // info_list.forEach(data=>{
+                //     try {
+                //         let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
+                //         data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
+                //     }
+                //     catch(err){
+                //         console.log(err);
+                //     }
+                // });
+                // console.log(info_list);
                 return info_list[this.barCount];
             }
         }

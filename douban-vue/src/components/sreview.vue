@@ -1,5 +1,5 @@
 <template>
-    <div id="content">
+    <div id="content" v-if="ready">
         <div class="grid-16-8">
             <div class="article">
                 <h1>
@@ -51,15 +51,27 @@
     </div>
 </template>
 <script>
-    let dataList = require('../data/review_json/12928567.json');
     export default{
         name:"Subject",
         data(){
             return{
-                dataList : dataList,
+                dataList : null,
+                ready: false,
 
             }
         },
+        mounted(){
+            axios
+            .get('http://localhost:8081/review/'+this.$route.params.id,{
+                responseType: 'json'
+                })
+            .then(response => {
+                console.log(typeof response.data);
+                this.dataList = response.data;
+                this.ready = true;
+            });
+            console.log(this.dataList);
+        }
         
     }
 </script>

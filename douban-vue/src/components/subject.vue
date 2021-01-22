@@ -19,13 +19,6 @@
                                 </div>
                                 <div id="info" class="">
                                     <span v-for="(item,index) in dataList.info" :key="index"> <span class="pl">{{item.split(":")[0]+":"}}</span> {{item.split(":")[1]}}<br></span>
-                                    <!-- <span class="pl">出版年:</span> 2020-12<br>
-                                    <span class="pl">页数:</span> 100<br>
-                                    <span class="pl">定价:</span> 45.00<br>
-                                    <span class="pl">装帧:</span> 平装<br>
-                                    <span class="pl">丛书:</span>&nbsp;<a
-                                        href="https://book.douban.com/series/31179">后浪漫</a><br>
-                                    <span class="pl">ISBN:</span> 9787541157776<br> -->
                                 </div>
                             </div>
                             <div id="interest_sectl" class="">
@@ -41,6 +34,7 @@
                                                     <a href="comments" class="rating_people"><span
                                                             property="v:votes">{{dataList.vote}}</span></a>
                                                 </span>
+                                                <Star :score="dataList.vote/2"/>
                                             </div>
                                         </div>
                                     </div>
@@ -127,6 +121,8 @@
 </template>
 <script>
     const axios = require('axios');
+    import Star from './star.vue'
+
     export default{
         name:"Subject",
         data(){
@@ -146,7 +142,10 @@
                 this.ready = true;
             });
             console.log(this.dataList);
-        }
+        },
+        components:{
+            Star,
+        },
         
     }
 </script>

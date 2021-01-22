@@ -7,26 +7,27 @@
                     <li class=" selected"> <a href="javascript:;"> <span>最受欢迎的</span> </a> </li>
                     <li class=""> <a href="/review/latest?app_name=book"> <span>最新书评</span> </a> </li>
                 </ul>
-                <div class="review-list chart ">
-                    <div data-cid="13071563" v-for="(item,index) in items" :key="index">
-                        <div class="main review-item" id="13071563">
-                            <a class="subject-img" href="https://book.douban.com/subject/30353862/"> <img alt="黑死病"
-                                    title="黑死病" src="https://img9.doubanio.com/view/subject/m/public/s30023016.jpg"
+                <div class="review-list chart " v-if="ready">
+                    <div v-for="(item,index) in dataList" :key="index">
+                        <div class="main review-item" >
+                            <a class="subject-img" :to="'/review/'+item.id"> <img :alt="item.title"
+                                    :title="item.title" :src="'../picture/'+item.src.split('/').slice(-1)"
                                     rel="v:image"> </a>
                             <header class="main-hd">
                                 <a href="https://www.douban.com/people/atdelilah/" class="avator">
-                                    <img width="24" height="24" src="https://img1.doubanio.com/icon/u52080104-9.jpg">
+                                    <img width="24" height="24" :src="'../picture/'+item.src.split('/').slice(-1)">
                                 </a>
-                                <a href="https://www.douban.com/people/atdelilah/" class="name">羽落弦</a>
-                                <span class="allstar10 main-title-rating" title="很差"></span>
-                                <span content="2020-12-20" class="main-meta">2020-12-20 20:28:17</span>
+                                <a href="https://www.douban.com/people/atdelilah/" class="name">{{item.dataAuthor}}</a>
+                                <!-- <span class="allstar10 main-title-rating" title="很差">{{item.star}}</span> -->
+                                <Star :score="item.star/2"/>
+
+                                <span class="main-meta">{{item.date}}</span>
                             </header>
                             <div class="main-bd">
-                                <h2><a href="https://book.douban.com/review/13071563/">如何精心毁掉一本历史著作</a></h2>
-                                <div id="review_13071563_short" class="review-short" data-rid="13071563">
+                                <h2><router-link :to="'/review/'+item.id">{{item.dataTitle}}</router-link></h2>
+                                <div id="review_13071563_short" class="review-short" >
                                     <div class="short-content">
-                                        首先一句话总结：毁掉这本书的并不是常见的翻译问题（相反，从译注可以看出译者很用心查资料），不是纸质或排版，而是“精心”的策划与图书设计。
-                                        一开始，我是听说这本书里有大量史料图片才买的，它的宣传也都是在强调“选用了大量原始资料”“知名高校图书馆珍藏”。虽然豆瓣...
+                                        {{item.abstract}}
                                         &nbsp;(<a href="javascript:;" id="toggle-13071563-copy" class="unfold"
                                             title="展开">展开</a>)
                                     </div>
@@ -41,12 +42,6 @@
                 </div>
             </div>
             <div class="aside">
-                <div class="sidebar-info-wrapper">
-                    <div class="sidebar-copy">
-                        <p>如果你觉得一篇评论对你有帮助，请你点击“有用”。你的投票直接决定哪些评论出现在豆瓣首页和“豆瓣最受欢迎的评论”里，以及在书、电影和音乐介绍页里评论的排序。</p>
-                        <p>所有“没用”的点击都是匿名的。</p>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -54,17 +49,90 @@
 </template>
 
 <script>
+    import Star from './star.vue'
     export default{
         name:"review",
         data(){
             return{
-                items : [...Array(20).keys()],
-
+                ready: false,
             }
         },
-        
+        mounted() {
+            this.$axios.get('http://localhost:8081/review/', {
+                responseType: 'json'
+            })
+                .then(res => {
+                    this.dataList = res.data;
+                    console.log(this.dataList);
+                    this.ready = true;
+                }
+                );
+        },
+        components:{
+            Star,
+        },
     }
 </script>
-<style>
-    
+<style scoped>
+    h2 {
+
+        font-size: 14px;
+        margin: 0 0 6px;
+    }
+
+    #content {
+        width: 1040px;
+        margin: 0 auto;
+    }
+
+    .greyinput {
+        text-align: right;
+    }
+
+    #subject_list {
+        width: 675px;
+        margin-left: 20px;
+    }
+
+    li {
+        border-top: 1px dashed #ddd;
+        padding: 20px 0 10px;
+    }
+
+    .subject-item .pub {
+        margin: 6px 0 8px;
+    }
+
+    .subject-item .info {
+        color: #666;
+    }
+
+    /* .aside{
+    flex:1;
+}  */
+    img {
+        width: 90px;
+        height: auto;
+    }
+
+    .pic {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .info {
+        display: inline-block;
+        width: 565px;
+        margin-left: 15px;
+    }
+
+    .buy-info a {
+        color: #bbb;
+    }
+
+    .market-info a:hover,
+    .buy-info a:hover {
+        background-color: #37a;
+        color: white;
+    }
 </style>

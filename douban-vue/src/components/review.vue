@@ -1,8 +1,9 @@
 <template>
     <div id="reviews" class="section">
         <SectionNav title="最受欢迎的书评">
-            <span class="link-more"><a href="/review/best/">更多热门书评»</a></span>
-            <span class="link-more"><a href="/review/latest/">最新书评»</a></span>
+            <span class="link-more"><router-link to="/review/">更多热门书评»</router-link
+                ></span>
+            <span class="link-more"><router-link to="/review/">最新书评»</router-link></span>
         </SectionNav>
         <div class="reviews-bd">
             <div class="review " v-for="(item,index) in items" :key="index">
@@ -16,13 +17,14 @@
                     <div class="review-meta">
                         <a :href="dataList[index].href">{{dataList[index].author}}</a> 评论
                         <a :href="dataList[index].author_href">{{dataList[index].book}}</a>
-                        <ul class="star">
+                        <!-- <ul class="star">
                             <li>★</li>
                             <li>★</li>
                             <li>★</li>
                             <li>★</li>
                             <li>★</li>
-                        </ul>
+                        </ul> -->
+                        <Star :score="5"/>
                     </div>
                     <div class="review-content">
                         {{dataList[index].content.replace("(全文)","")}}
@@ -37,6 +39,7 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
+    import Star from './star.vue'
     let dataList = require('../data/review')
     export default{
         name:"Review",
@@ -48,7 +51,8 @@
         },
         components:{
             SectionNav,
-        }
+            Star,
+        },
     }
     </script>
 
@@ -66,7 +70,7 @@ img{
     height: auto;
 }
 .more-meta{
-        display: none;
+    display: none;
 }
 .review{
     display: flex;
