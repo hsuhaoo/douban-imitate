@@ -12,29 +12,32 @@
                         <div class="main review-item" >
                             <a class="subject-img" :to="'/review/'+item.id"> <img :alt="item.title"
                                     :title="item.title" :src="'../picture/'+item.src.split('/').slice(-1)"
-                                    rel="v:image"> </a>
-                            <header class="main-hd">
-                                <a href="https://www.douban.com/people/atdelilah/" class="avator">
-                                    <img width="24" height="24" :src="'../picture/'+item.src.split('/').slice(-1)">
-                                </a>
-                                <a href="https://www.douban.com/people/atdelilah/" class="name">{{item.dataAuthor}}</a>
-                                <!-- <span class="allstar10 main-title-rating" title="很差">{{item.star}}</span> -->
-                                <Star :score="item.star/2"/>
+                                    rel="v:image"> 
+                            </a>
+                            <div class="info">
+                                <header class="main-hd">
+                                    <!-- <a href="https://www.douban.com/people/atdelilah/" class="avator">
+                                        <img width="24" height="24" :src="'../picture/'+item.src.split('/').slice(-1)">
+                                    </a> -->
+                                    <a href="https://www.douban.com/people/atdelilah/" class="name">{{item.dataAuthor}}</a>
+                                    <!-- <span class="allstar10 main-title-rating" title="很差">{{item.star}}</span> -->
+                                    <Star :score="item.star/2"/>
 
-                                <span class="main-meta">{{item.date}}</span>
-                            </header>
-                            <div class="main-bd">
-                                <h2><router-link :to="'/review/'+item.id">{{item.dataTitle}}</router-link></h2>
-                                <div id="review_13071563_short" class="review-short" >
-                                    <div class="short-content">
-                                        {{item.abstract}}
-                                        &nbsp;(<a href="javascript:;" id="toggle-13071563-copy" class="unfold"
-                                            title="展开">展开</a>)
+                                    <span class="main-meta">{{item.date}}</span>
+                                </header>
+                                <div class="main-bd">
+                                    <h2><router-link :to="'/review/'+item.id">{{item.dataTitle}}</router-link></h2>
+                                    <div id="review_13071563_short" class="review-short" >
+                                        <div class="short-content">
+                                            {{item.text.slice(0,128)+"..."}}
+                                            &nbsp;(<a href="javascript:;" id="toggle-13071563-copy" class="unfold" @mouseclick=""
+                                                title="展开">展开</a>)
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="action">
-                                    <a href="javascript:;;" class="fold hidden">收起</a>
+                                    <div class="action" v-if="folder[index]">
+                                        <a href="javascript:;;" class="fold hidden">收起</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -55,6 +58,7 @@
         data(){
             return{
                 ready: false,
+                folder: Array().fill(true),
             }
         },
         mounted() {
@@ -68,71 +72,88 @@
                 }
                 );
         },
+        methods: {
+            unfold: function(index) {
+                this.folder[i] = false
+            },
+        },
+        computed:{
+            abstract: function() {
+                let getData = (elem) => {
+                  let text = elem.text.slice(0,128)+"...";
+                  return text;
+                };
+                textList = this.dataList.map(getData);
+                for(let i=0;i<this.dataList.length;i++){
+                    if(!folder[i]){
+                        textList[i] = this.dataList.text;
+                    }
+                }
+            }
+        },
         components:{
             Star,
         },
     }
 </script>
 <style scoped>
-    h2 {
-
-        font-size: 14px;
-        margin: 0 0 6px;
+    h1 {
+        font-size: 26px;
+        margin: 40px 0 0 0;
+        padding: 0 0 15px 0;
+        font-size: 25px;
+        font-weight: bold;
+        color: #494949;
+        line-height: 1.1;
     }
-
+    .top-tab {
+        font-size: 13px;
+        color: #37a;
+        display: flex;
+    }
+    .top-tab .selected, .top-tab .selected a {
+        color: #111;
+        cursor: default;
+    }
+    .top-tab .selected, .top-tab .selected a {
+        color: #111;
+        cursor: default;
+    }
+    .chart .subject-img img {
+        max-width: 100%;
+    }
+    a img {
+        border-width: 0;
+        vertical-align: middle;
+    }
+    /* .top-tab>li {
+        float: left;
+    } */
+    .review-list.chart .review-item .subject-img img{
+        /* float: left; */
+        margin-right: 20px;
+        max-width: 75px;
+        max-height: 107px;
+    }
+    .review-list .review-item {
+        padding: 20px 0px;
+        display: flex;
+        border-top: 1px dashed #ddd;
+        padding: 20px 0 10px;
+    }
+    .review-list {
+        margin-top: 20px;
+    }
     #content {
         width: 1040px;
         margin: 0 auto;
     }
-
-    .greyinput {
-        text-align: right;
+    .review-wrapper {
+        font-size: 13px;
     }
-
-    #subject_list {
-        width: 675px;
-        margin-left: 20px;
-    }
-
-    li {
-        border-top: 1px dashed #ddd;
-        padding: 20px 0 10px;
-    }
-
-    .subject-item .pub {
-        margin: 6px 0 8px;
-    }
-
-    .subject-item .info {
-        color: #666;
-    }
-
-    /* .aside{
-    flex:1;
-}  */
-    img {
-        width: 90px;
-        height: auto;
-    }
-
-    .pic {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .info {
-        display: inline-block;
-        width: 565px;
-        margin-left: 15px;
-    }
-
-    .buy-info a {
-        color: #bbb;
-    }
-
-    .market-info a:hover,
-    .buy-info a:hover {
-        background-color: #37a;
-        color: white;
+    .review-list .review-item .main-bd h2 {
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-top: 0;
     }
 </style>
