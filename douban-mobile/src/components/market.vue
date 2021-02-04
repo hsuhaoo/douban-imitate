@@ -26,7 +26,7 @@
               <li v-for="(item,index) in items" :key="index">
                 <div class="cover">
                   <a :href="dataList[index].href" target="_blank">
-                    <img :src="dataList[index].src" width="106" height="140" :alt="dataList[index].title"/>
+                    <img :src="'../picture/' + dataList[index].src.match(/[0-9]+.jpg/i).slice(-1)" width="106" height="140" :alt="dataList[index].title"/>
                   </a>
                 </div>
                 <div class="info">

@@ -1,5 +1,5 @@
 <template>
-    <div class="popular-books">
+    <div class="popular-books" v-if="ready">
         <SectionNav :title="title">
             <span class="link-more">
                 <a href="/chart?subcat=F&amp;icn=index-topchart-fiction">更多»</a>
@@ -21,9 +21,9 @@
                         :href="dataList[index].href" class="">{{dataList[index].title}}</a>
                     </h4>
                     <p class="entry-star-small">
-                        <Star :score="dataList[index].rating/2"/>
+                        <Star :score="dataList[index].score/2"/>
                         <span class="average-rating">
-                            {{dataList[index].rating}}
+                            {{dataList[index].score}}
                         </span>
                     </p>
                 </div>
@@ -35,14 +35,15 @@
 <script>
     import SectionNav from './sectionNav.vue'
     import Star from './star.vue'
-    let dataList = require('../data/popularBook')
+    // let dataList = require('../data/real')
     export default{
         name:"PopularBook",
         data(){
             return{
                 items : [...Array(10).keys()],
-                dataList: dataList,
+                // dataList: dataList,
                 currentLeft: 0,
+                ready: false,
             }
         },
         components:{
@@ -84,10 +85,36 @@
         //         return this.dataList;
         //     }
         // },
+        mounted() {
+
+            // this.$axios
+            // .get("http://localhost:8081/review/" + this.$route.params.id, {
+            //     responseType: "json",
+            // })
+            // .then((response) => {
+            //     this.dataList = response.data;
+            //     this.ready = true;
+            // });
+            // console.log(this.dataList);
+            // let scrollEvent=()=>{
+            //     let position = Math.max(100, 50+window.scrollY)
+            //     this.$refs.float.style.top=position+"px";
+            // }
+            this.ready = true;
+            if(this.fiction){
+                this.dataList = require('../data/real');
+            }
+            else {
+                this.dataList = require('../data/unreal');
+            }
+        },
         props:{
             title:{
                 type: String,
             },
+            fiction:{
+                type: Boolean,
+            }
         }
     }
     </script>

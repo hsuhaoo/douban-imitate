@@ -2,7 +2,7 @@
     <div>
         <SectionNav title="热门标签">
             <span class="link-more">
-                <a class="" href="/tag/?view=type&amp;icn=index-sorttags-all">所有热门标签»</a>
+                <router-link class="" to="/tag">所有热门标签»</router-link>
               </span>
         </SectionNav>
     <ul class="hot-tags-col5 s" data-dstat-areaid="54" data-dstat-mode="click,expose">

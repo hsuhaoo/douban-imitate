@@ -10,10 +10,10 @@
                 <div class="review-list chart " v-if="ready">
                     <div v-for="(item,index) in dataList" :key="index">
                         <div class="main review-item" >
-                            <a class="subject-img" :to="'/review/'+item.id"> <img :alt="item.title"
+                            <router-link class="subject-img" :to="'/review/'+item.id"> <img :alt="item.title"
                                     :title="item.title" :src="'../picture/'+item.src.split('/').slice(-1)"
                                     rel="v:image"> 
-                            </a>
+                            </router-link>
                             <div class="info">
                                 <header class="main-hd">
                                     <!-- <a href="https://www.douban.com/people/atdelilah/" class="avator">

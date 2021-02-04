@@ -6,17 +6,17 @@
             <span class="link-more"><router-link to="/review/">最新书评»</router-link></span>
         </SectionNav>
         <div class="reviews-bd">
-            <div class="review " v-for="(item,index) in items" :key="index">
+            <div class="review " v-for="(item,index) in dataList" :key="index">
                 <div class="review-hd">
-                    <a :href="dataList[index].href">
+                    <router-link :to="'/review/'+item.id">
                         <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)" :alt="dataList[index].title">
-                    </a>
+                    </router-link>
                 </div>
                 <div class="review-bd">
-                    <h3><a :href="dataList[index].href">{{dataList[index].title}}</a></h3>
+                    <h3><a :to="'/review/'+item.id">{{dataList[index].dataTitle}}</a></h3>
                     <div class="review-meta">
-                        <a :href="dataList[index].href">{{dataList[index].author}}</a> 评论
-                        <a :href="dataList[index].author_href">{{dataList[index].book}}</a>
+                        <a >{{dataList[index].info[0]}}</a> 评论
+                        <router-link :to="'/subject/'+item.href.split('/').slice(-2)[0]">{{dataList[index].title}}</router-link>
                         <!-- <ul class="star">
                             <li>★</li>
                             <li>★</li>
@@ -24,11 +24,11 @@
                             <li>★</li>
                             <li>★</li>
                         </ul> -->
-                        <Star :score="5"/>
+                        <Star :score="dataList[index].star/2"/>
                     </div>
                     <div class="review-content">
-                        {{dataList[index].content.replace("(全文)","")}}
-                        <a :href="dataList[index].href">(全文)</a>
+                        {{dataList[index].text}}
+                        <router-link :to="'/review/'+item.id">(全文)</router-link>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,6 @@
         name:"Review",
         data(){
             return{
-                items : [...Array(4).keys()],
                 dataList: dataList,
             }
         },

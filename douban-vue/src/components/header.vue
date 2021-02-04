@@ -3,7 +3,7 @@
         <div class="navWrap">
             <div class="navPrimary">
                 <div class="navLogo">
-                    <a href="https:&#47;&#47;book.douban.com">豆瓣读书</a>
+                    <router-link to="/">豆瓣读书</router-link>
                 </div>
                 <div class="navSearch">
                     <form action="" method="get" accept-charset="utf-8">

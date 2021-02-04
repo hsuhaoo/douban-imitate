@@ -7,6 +7,7 @@ import Subject from "./components/subject.vue"
 import Reviewm from "./components/reviewm.vue"
 import Review from "./components/sreview.vue"
 import Page from "./components/page.vue"
+import Alltag from "./components/alltag.vue"
 import axios from 'axios'
 
 Vue.use(VueRouter)
@@ -17,6 +18,7 @@ let router = new VueRouter({
   routes: [
       //一个个对象
       { path: '/', component: Index },
+      { path: '/tag', name:"alltag", component: Alltag },
       { path: '/tag/:id', name:"tag", component: Stag },
       { path: '/subject/:id', name:"subject", component: Subject },
       { path: '/review', name:"reviewm", component: Reviewm },

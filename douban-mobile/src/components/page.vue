@@ -4,11 +4,9 @@
         <div class="article">
             <div id="subject_list">
                 <div class="rr greyinput">
-                    综合排序
+                    <a href="javascript:;":class="{selected: isDate}" @click="sortYear()">按出版日期排序</a>
                     &nbsp;/&nbsp;
-                    <a href="/tag/%E5%B0%8F%E8%AF%B4?type=R">按出版日期排序</a>
-                    &nbsp;/&nbsp;
-                    <a href="/tag/%E5%B0%8F%E8%AF%B4?type=S">按评价排序</a>
+                    <a href="javascript:;" :class="{selected: isScore}" @click="sortScore()">按评价排序</a>
                 </div>
                 <ul class="subject-list" >
                     <li class="subject-item" v-for="(item,index) in dataList" :key="index">
@@ -25,16 +23,18 @@
                                 </router-link>
                             </h2>
                             <div class="pub">
-                                {{dataList[index].publisher}}
+                                <span class="main-meta">{{dataList[index].author}}</span>
+                                <span class="main-meta">{{dataList[index].publisher}}</span>
+                                <span class="main-meta">{{dataList[index].year}}</span>
                             </div>
                             <div class="star clearfix">
                                 <span class="allstar45"></span>
                                 <span class="rating_nums">{{dataList[index].score}}</span>
+                                <Star :score="dataList[index].score/2"/>
                                 <span class="pl">
                                     {{dataList[index].vote}}
                                 </span>
                             </div>
-
                             <p>{{dataList[index].abstract}}
                             </p>
                         </div>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    const axios = require('axios');
+    import Star from './star.vue'
     export default {
         name: "Stag",
         props: {
@@ -61,6 +61,8 @@
                 ready: false,
                 picList: [],
                 dataList: [],
+                isScore: false,
+                isDate: true,
             }
         },
         mounted() {
@@ -84,6 +86,25 @@
                 }
                 return titleList[this.$route.params.id];
             }
+        },
+        components: {
+            Star,
+        },
+        methods: {
+            sortYear:function(){
+                this.dataList.sort(function(a,b){
+                return Date.parse(a.year)-Date.parse(b.year)});
+                console.log(this.dataList);
+                this.isScore = false;
+                this.isDate = true;
+            },
+            sortScore:function(){
+                this.dataList.sort(function(a,b){
+                return a.score-b.score});
+                console.log(this.dataList);
+                this.isScore = true;
+                this.isDate = false;
+            },
         }
     }
 </script>
@@ -149,5 +170,10 @@
     .buy-info a:hover {
         background-color: #37a;
         color: white;
+    }
+
+    .selected, .selected a {
+        color: #111;
+        cursor: default;
     }
 </style>

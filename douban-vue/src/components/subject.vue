@@ -13,7 +13,7 @@
                                 <div id="mainpic" class="">
                                     <a class="nbg" 
                                         :title="dataList.title">
-                                        <img :src="dataList.src"
+                                        <img :src="'../picture/'+dataList.src.split('/').slice(-1)"
                                             title="点击看大图" :alt="dataList.title" rel="v:photo">
                                     </a>
                                 </div>
@@ -26,45 +26,27 @@
                                     <div class="rating_logo">豆瓣评分</div>
                                     <div class="rating_self clearfix" typeof="v:Rating">
                                         <strong class="ll rating_num " property="v:average"> {{dataList.score}} </strong>
-                                        <span property="v:best" content="10.0"></span>
+                                        <!-- <span property="v:best" content="10.0"></span> -->
                                         <div class="rating_right ">
                                             <div class="ll bigstar40"></div>
                                             <div class="rating_sum">
+                                                <Star :score="dataList.score/2"/>
+                                                <br>
                                                 <span class="">
                                                     <a href="comments" class="rating_people"><span
                                                             property="v:votes">{{dataList.vote}}</span></a>
                                                 </span>
-                                                <Star :score="dataList.vote/2"/>
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="stars5 starstop" title="力荐">
-                                        5星
-                                    </span>
-                                    <div class="power" style="width:48px"></div>
-                                    <span class="rating_per">{{dataList.ratingPer[0]}}</span>
-                                    <br>
-                                    <span class="stars4 starstop" title="推荐">
-                                        4星
-                                    </span>
-                                    <div class="power" style="width:64px"></div>
-                                    <span class="rating_per">{{dataList.ratingPer[1]}}</span>
-                                    <br>
-                                    <span class="stars3 starstop" title="还行">
-                                        3星
-                                    </span>
-                                    <span class="rating_per">{{dataList.ratingPer[2]}}</span>
-                                    <br>
-                                    <span class="stars2 starstop" title="较差">
-                                        2星
-                                    </span>
-                                    <span class="rating_per">{{dataList.ratingPer[3]}}</span>
-                                    <br>
-                                    <span class="stars1 starstop" title="很差">
-                                        1星
-                                    </span>
-                                    <span class="rating_per">{{dataList.ratingPer[4]}}</span>
-                                    <br>
+                                    <div v-for="(item,index) in dataList.ratingPer">
+                                        <span class="stars5 starstop">
+                                            {{5-index}}星
+                                        </span>
+                                        <div class="power" :style="'width:'+toPoint(item)*100+'px'"></div>
+                                        <span class="rating_per">{{item}}</span>
+                                        <br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,18 +61,18 @@
                         <div class="indent" id="link-report">
                             <span class="short">
                                 <div class="intro">
-                                    <p>{{dataList.introSummary}}</p>
-                                    <p><a href="javascript:void(0)" class="j a_show_full">(展开全部)</a></p>
+                                    <p>{{intro}}</p>
+                                    <p><a href="javascript:void(0)" class="j a_show_full" v-if="dataList.intro.length>0 && folder" @click="unfold()">(展开全部)</a></p>
                                 </div>
                             </span>
-                            <span class="all hidden" v-if="dataList.intro.length>0">
+                            <!-- <span class="all hidden" v-if="dataList.intro.length>0">
                                 <div class="">
                                     <div class="intro">
                                         <p>{{dataList.intro}}</p>
                                     </div>
 
                                 </div>
-                            </span>
+                            </span> -->
                         </div>
                         <div class="indent " v-if="dataList.authorIntro.length>0">
                             <h2>
@@ -103,13 +85,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="indent" v-if="dataList.dir!==null">
+                        <div class="indent" v-if="dataList.dir.length>0">
                             <h2>
                                 <span>目录</span>
                                   &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
                             </h2>
                             <span v-html="dataList.dir.slice(1,-9).replace(/\n/g,'<br>')"></span>
-                        (<a href="javascript:$('#dir_35219823_short').hide();$('#dir_35219823_full').show();$.get('/j/subject/j_dir_count',{id:35219823});void(0);">更多</a>)
                     </div>
                     </div>
                 </div>
@@ -128,7 +109,8 @@
         data(){
             return{
                 ready:false,
-                dataList: {}
+                dataList: {},
+                folder:true,
             }
         },
         mounted(){
@@ -139,12 +121,32 @@
             .then(response => {
                 console.log(typeof response.data);
                 this.dataList = response.data;
+                console.log(this.toPoint(this.dataList.ratingPer[0])*140);
                 this.ready = true;
             });
-            console.log(this.dataList);
         },
         components:{
             Star,
+        },
+        computed: {
+            intro: function() {
+                if(this.folder){
+                    return this.dataList.introSummary
+                }
+                else{
+                    return this.dataList.intro;
+                }
+            }
+        },
+        methods: {
+            unfold: function() {
+                this.folder = false;
+            },
+            toPoint: function(percent){
+   		 	    let str=percent.replace("%","");
+    		    str= str/100;
+   		 	    return str;
+            }
         },
         
     }
@@ -204,7 +206,7 @@ h2 {
     overflow: hidden;
 }
 #interest_sectl {
-    width: 155px;
+    width: 165px;
     margin: 2px 0 0 0;
     padding: 0 0 0 15px;
     border-left: 1px solid #eaeaea;
@@ -215,5 +217,14 @@ h2 {
     padding: 0;
     min-width: 30%;
     font-size: 28px;
+}
+.power{
+    display:inline-block;
+    background: #ffd596 none repeat scroll 0 0;
+    height: 10px;
+    margin: 1px 4px;
+}
+.rating_right{
+    display:inline-block;
 }
 </style>

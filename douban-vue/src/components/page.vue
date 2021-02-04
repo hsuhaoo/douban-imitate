@@ -4,9 +4,9 @@
         <div class="article">
             <div id="subject_list">
                 <div class="rr greyinput">
-                    <a :class="{selected: isDate}">按出版日期排序</a>
+                    <a href="javascript:;":class="{selected: isDate}" @click="sortYear()">按出版日期排序</a>
                     &nbsp;/&nbsp;
-                    <a :class="{selected: isScore}">按评价排序</a>
+                    <a href="javascript:;" :class="{selected: isScore}" @click="sortScore()">按评价排序</a>
                 </div>
                 <ul class="subject-list" >
                     <li class="subject-item" v-for="(item,index) in dataList" :key="index">
@@ -23,7 +23,9 @@
                                 </router-link>
                             </h2>
                             <div class="pub">
-                                {{dataList[index].publisher}}
+                                <span class="main-meta">{{dataList[index].author}}</span>
+                                <span class="main-meta">{{dataList[index].publisher}}</span>
+                                <span class="main-meta">{{dataList[index].year}}</span>
                             </div>
                             <div class="star clearfix">
                                 <span class="allstar45"></span>
@@ -33,7 +35,6 @@
                                     {{dataList[index].vote}}
                                 </span>
                             </div>
-
                             <p>{{dataList[index].abstract}}
                             </p>
                         </div>
@@ -89,7 +90,7 @@
         components: {
             Star,
         },
-        method: {
+        methods: {
             sortYear:function(){
                 this.dataList.sort(function(a,b){
                 return Date.parse(a.year)-Date.parse(b.year)});
@@ -171,7 +172,7 @@
         color: white;
     }
 
-    .top-tab .selected, .top-tab .selected a {
+    .selected, .selected a {
         color: #111;
         cursor: default;
     }

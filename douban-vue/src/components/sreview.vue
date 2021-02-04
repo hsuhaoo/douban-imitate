@@ -12,21 +12,18 @@
                 <span>{{ dataList.dataAuthor }}</span>
               </a>
               评论
-              <a href="https://book.douban.com/subject/35267458/">{{
+              <router-link :to="'/subject/'+item.href.split('/').slice(-2)[0]">{{
                 dataList.title
-              }}</a>
+              }}</router-link>
               <span class="allstar50 main-title-rating"></span>
               <span class="main-title-hide">{{ dataList.score }}</span>
-              <span content="2020-12-23" class="main-meta">{{
+              <span class="main-meta">{{
                 dataList.date
               }}</span>
             </header>
             <div id="link-report">
               <div
-                class="review-content clearfix"
-                :data-author="dataList.dataAuthor"
-                data-url="https://book.douban.com/review/13077015/"
-                data-original="1"
+                class="review-content"
               >
                 <p v-html="dataList.text.slice(1).replace(/\n/g, '<br>')"></p>
               </div>
@@ -112,12 +109,12 @@
         <div class="float-content" ref="float">
       <div class="sidebar-info-wrapper">
         <div class="subject-title">
-          <a href="https://book.douban.com/subject/35267458/"
-            >&gt;&nbsp;{{ dataList.title }}</a
+          <router-link :to="'/subject/'+item.href.split('/').slice(-2)[0]"
+            >&gt;&nbsp;{{ dataList.title }}</router-link
           >
         </div>
         <div class="subject-img">
-          <a :href="'../picture/' + dataList.src.split('/').slice(-1)">
+          <a>
             <img
               :alt="dataList.title"
               :title="dataList.title"

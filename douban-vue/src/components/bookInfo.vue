@@ -2,7 +2,8 @@
     <div>
         <SectionNav title='图书资讯' slide="slide" @renderul='renderul' :selectIndex="barCount"></SectionNav>
         <div class="infoContent" v-if="ready">
-            <a :href="newData.href">
+            <!-- <a :href="newData.href"> -->
+            <router-link :to="'/review/'+newData.href.split('/').slice(-2)[0]">
             <div class="content">
                 <span class="title">{{newData.title}}</span>
                 <span class="meta">{{newData.meta}}</span>
@@ -12,7 +13,7 @@
             </div>
             <div class="cover" :style="newData.style"
             ></div>
-            </a>
+            </router-link>
         </div>
     </div>
 </template>
