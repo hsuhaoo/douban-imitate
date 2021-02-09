@@ -13,15 +13,15 @@
             data-dstat-areaid="61" data-dstat-mode="click,expose">
             <li class="" v-for="(item,index) in items" :key="index">
                 <div class="cover">
-                <a onclick="" :href="dataList[index].href">
+                <router-link onclick="" :to="'/subject/'+dataList[index].href.split('/').slice(-2)[0]">
                     <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
                     :alt="dataList[index].title" class="">
-                </a>
+                </router-link>
                 </div>
                 <div class="info">
                     <h4 class="title">
-                        <a onclick=""
-                        :href="dataList[index].href" class="">{{dataList[index].title}}</a>
+                        <router-link onclick=""
+                        :to="'/subject/'+dataList[index].href.split('/').slice(-2)[0]" class="">{{dataList[index].title}}</router-link>
                     </h4>
                     <p class="entry-star-small">
                         <Star :score="dataList[index].rating/2"/>

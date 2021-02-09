@@ -8,8 +8,14 @@ import Reviewm from "./components/reviewm.vue"
 import Review from "./components/sreview.vue"
 import Page from "./components/page.vue"
 import Alltag from "./components/alltag.vue"
+import Search from "./components/search.vue"
+import Login from "./components/login.vue"
 import axios from 'axios'
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;
@@ -24,7 +30,8 @@ let router = new VueRouter({
       { path: '/review', name:"reviewm", component: Reviewm },
       { path: '/review/:id', name:"review", component: Review },
       { path: '/page/:id', name:"page", component: Page },
-
+      { path: '/search', name:"search", component: Search },
+      { path: '/login', name:"login", component: Login },
   ]
 });
 

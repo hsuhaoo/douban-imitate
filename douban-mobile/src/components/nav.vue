@@ -60,14 +60,14 @@ a {
     color: #42bd56;
     text-decoration: none;
 }
-.TalionNav-primary .search-box.on-search {
-    width: 230px;
+.TalionNav-primary .search-box .on-search {
+    max-width: 230px;
     flex: 230px 0 0;
     animation: open ease-in 0.3s;
 }
 .TalionNav-primary .search-box {
-    width: 100px;
-    flex: 100px 0 0;
+    /* width: 100px; */
+    /* flex: 100px 0 0; */
     height: 30px;
     border-radius: 15px;
     border: 1px solid #dfdfdf;
@@ -124,6 +124,7 @@ a {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    white-space: nowrap;
 }
 .TalionNav-static:after {
     content: "";

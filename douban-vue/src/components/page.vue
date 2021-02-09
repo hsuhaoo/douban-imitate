@@ -23,8 +23,8 @@
                                 </router-link>
                             </h2>
                             <div class="pub">
-                                <span class="main-meta">{{dataList[index].author}}</span>
-                                <span class="main-meta">{{dataList[index].publisher}}</span>
+                                <span class="main-meta">{{dataList[index].author}}/</span>
+                                <span class="main-meta">{{dataList[index].publisher}}/</span>
                                 <span class="main-meta">{{dataList[index].year}}</span>
                             </div>
                             <div class="star clearfix">

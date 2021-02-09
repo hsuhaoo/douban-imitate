@@ -4,6 +4,7 @@
     <PopularBook title="最受关注图书｜非虚构类" :fiction="false" />
     <Market />
     <Cate />
+    <Foot />
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import PopularBook from "./popularBook.vue";
 import Market from "./market.vue";
 import Cate from "./cate.vue";
+import Foot from "./foot.vue";
 
 export default {
   name: "Index",
@@ -18,20 +20,22 @@ export default {
     PopularBook,
     Market,
     Cate,
+    Foot,
   },
 };
 </script>
 
 <style>
 .main {
-  width: 650px;
+  max-width: 650px;
   margin: 0 auto;
-  /* overflow: hidden; */
+  background: #fff;
+  overflow: hidden;
 }
 a {
   font-weight: normal;
   text-decoration: none;
-  color: #3377aa;
+  /* color: #3377aa; */
 }
 ul {
   list-style: none;

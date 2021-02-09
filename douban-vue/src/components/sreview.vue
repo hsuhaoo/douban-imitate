@@ -12,7 +12,7 @@
                 <span>{{ dataList.dataAuthor }}</span>
               </a>
               评论
-              <router-link :to="'/subject/'+item.href.split('/').slice(-2)[0]">{{
+              <router-link :to="'/subject/'+dataList.href.split('/').slice(-2)[0]">{{
                 dataList.title
               }}</router-link>
               <span class="allstar50 main-title-rating"></span>
@@ -28,88 +28,16 @@
                 <p v-html="dataList.text.slice(1).replace(/\n/g, '<br>')"></p>
               </div>
             </div>
-            <div id="comments" class="comment-list">
-              <div class="comments-app-wrapper">
-                <div class="comment-list-wrapper">
-                  <div
-                    class="item comment-item"
-                    data-cid="13587023"
-                    data-target_id="13042091"
-                    data-target_kind="1012"
-                  >
-                    <div class="comment-item-body">
-                      <div class="comment-main">
-                        <div
-                          class="meta-header"
-                          style="background-color: rgb(248, 248, 244);"
-                        >
-                          <a
-                            title="Kha_Ngan"
-                            >Kha_Ngan</a
-                          ><time datetime="2020-12-08 22:04:38"
-                            >2020-12-08 22:04:38</time
-                          >
-                        </div>
-                        <div class="comment-content">
-                          <span>我都没收到！</span>
-                        </div>
-                        <div class="comment-action-bar">
-                          <div class="action-bar-group">
-                            <a
-                              rel="nofollow"
-                              title="回应Kha_Ngan"
-                              href="javascript:;"
-                              style="display: inline;"
-                              >回应</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="comment-editor">
-
-                  <form class="form-field">
-                    <div class="form-input-wrapper">
-                      <div class="form-area-wrap">
-                        <textarea
-                          class="form-area"
-                          placeholder="添加回应"
-                          rows="4"
-                          cols="64"
-                        ></textarea>
-                      </div>
-
-                    </div>
-                    <div class="form-foot">
-
-                      <div class="form-foot-item limit-count overflow"></div>
-                      <div class="form-foot-item"></div>
-                      <div class="form-foot-item">
-                        <button type="submit" class="comment-form-btn">
-                          加上去
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="notification-bar comment-notification-bar">
-                  <div class="notification-bar-wrapper">
-                    <span class="notification-bar-message"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+        <Comment/>
       </div>
     </div>
     <div class="aside">
         <div class="float-content" ref="float">
       <div class="sidebar-info-wrapper">
         <div class="subject-title">
-          <router-link :to="'/subject/'+item.href.split('/').slice(-2)[0]"
+          <router-link :to="'/subject/'+dataList.href.split('/').slice(-2)[0]"
             >&gt;&nbsp;{{ dataList.title }}</router-link
           >
         </div>
@@ -141,6 +69,7 @@
   </div>
 </template>
 <script>
+import Comment from './comment.vue'
 export default {
   name: "Subject",
   data() {
@@ -156,6 +85,7 @@ export default {
       })
       .then((response) => {
         this.dataList = response.data;
+        console.log(this.dataList);
         this.ready = true;
       });
     // console.log(this.dataList);
@@ -168,6 +98,9 @@ export default {
         this.$refs.float.style.top = position+"px";
     });
   },
+  components:{
+      Comment,
+    },
 };
 </script>
 <style scoped>

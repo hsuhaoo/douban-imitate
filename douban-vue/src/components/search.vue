@@ -1,10 +1,9 @@
 <template>
     <div id="content" v-if="ready">
-        <h1>{{}}</h1>
+        <h1>搜索{{$route.params.message}}</h1>
         <div class="article">
-            <div id="subject_list">
-                <div class="rr greyinput">
-                    综合排序 &nbsp;/&nbsp;
+            <div id="subject_list" >
+                <div class="rr greyinput" v-if="dataList.length>0">
                     <a href = "javascript:void(0);" @onclick="sortYear">按出版日期排序</a>
                     &nbsp;/&nbsp;
                     <a href = "javascript:void(0);" @onclick="sortScore">按评价排序</a>
@@ -12,16 +11,14 @@
                 <ul class="subject-list">
                     <li
                         class="subject-item"
-                        v-for="(item, index) in items"
+                        v-for="(item, index) in dataList"
                         :key="index"
                     >
                         <div class="pic">
                             <router-link
                                 :to="
                                     '/subject/' +
-                                        dataList[index].href
-                                            .split('/')
-                                            .slice(-2, -1)
+                                        dataList[index].id
                                 "
                                 class="nbg"
                             >
@@ -40,9 +37,7 @@
                                 <router-link
                                     :to="
                                         '/subject/' +
-                                            dataList[index].href
-                                                .split('/')
-                                                .slice(-2, -1)
+                                            dataList[index].id
                                     "
                                     :title="dataList[index].title"
                                 >
@@ -50,13 +45,16 @@
                                 </router-link>
                             </h2>
                             <div class="pub">
-                                {{ dataList[index].publisher }}
+                                <span class="main-meta">{{dataList[index]["作者"]}}/</span>
+                                <span class="main-meta">{{dataList[index]["出版社"]}}/</span>
+                                <span class="main-meta">{{dataList[index]["出版年"]}}</span>
                             </div>
                             <div class="star clearfix">
                                 <span class="allstar45"></span>
                                 <span class="rating_nums">{{
                                     dataList[index].score
                                 }}</span>
+                                <Star :score="dataList[index].score/2"/>
                                 <span class="pl">
                                     {{ dataList[index].vote }}
                                 </span>
@@ -66,6 +64,7 @@
                         </div>
                     </li>
                 </ul>
+                <div class="_62cnaxip" v-if="dataList.length==0">没有找到关于 “{{$route.params.message}}” 的书，换个搜索词试试吧。</div>
             </div>
             <div class="aside"></div>
         </div>
@@ -73,7 +72,7 @@
 </template>
 
 <script>
-const axios = require("axios");
+import Star from './star.vue'
 export default {
     name: "Stag",
     props: {
@@ -89,18 +88,19 @@ export default {
             dataList: [],
         };
     },
+    components: {
+            Star,
+    },
     mounted() {
-        this.$axios
-            .get("http://localhost:8081/search", {
-                responseType: "json",
-                params: {
-                    "info":info,
+            this.$axios.get('http://localhost:8081/search/'+encodeURIComponent(this.$route.params.message),{
+                    responseType: 'json'
+                })
+                .then(res => {
+                    this.dataList = res.data;
+                    console.log(this.dataList);
+                    this.ready = true;
                 }
-            })
-            .then((res) => {
-                this.dataList = res.data;
-                this.ready = true;
-            });
+            );
 
         // let dataList = require('../data/'+this.info+'.json');
         // this.dataList = dataList;
@@ -139,7 +139,7 @@ export default {
     methods: {
         sortYear:function(){
         this.dataList.sort(function(a,b){
-            return a.year-b.year});
+            return a["出版年"]-b["出版年"]});
         },
         sortScore:function(){
         this.dataList.sort(function(a,b){
@@ -212,4 +212,5 @@ img {
     background-color: #37a;
     color: white;
 }
+
 </style>

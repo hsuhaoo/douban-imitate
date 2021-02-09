@@ -113,4 +113,21 @@ img{
 .pic{
   background-image: url('../assets/6882.png');
 }
+.top .info .title .price {
+    font-size: 17px;
+    color: #E76648;
+    margin-left: 17px;
+}
+.top .info .title .free_delivery {
+    font-size: 14px;
+    color: #E76648;
+    position: relative;
+    top: -1px;
+}
+.top .info .desc {
+    margin: 0;
+    color: #9B9B9B;
+    font-size: 14px;
+    line-height: 20px;
+}
 </style>

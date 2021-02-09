@@ -26,9 +26,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body{
+body {
   margin: 0;
-  background: #f6f6f6;
+  color: #191919;
+  font-size: 12px;
+  font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
   position: relative;
 }
 

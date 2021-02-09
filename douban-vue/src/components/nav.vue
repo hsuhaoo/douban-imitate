@@ -19,12 +19,15 @@
                 </div>
               </div>
         </li>
-        <li><a class="items" href="https://accounts.douban.com/passport/login?source=book" >登录/注册</a></li>
+        <li><router-link to="/login" class="items" v-if="sharedState.id.length===0">登录/注册</router-link></li>
+        <li><a class="items" v-if="sharedState.id.length>0">{{sharedState.id}}的账号</a></li>
     </ul>
 </div>
 </template>
 
 <script>
+import store from "../store.js"
+
 export default{
     name:"Nav",
     data(){
@@ -40,7 +43,8 @@ export default{
                     "https://douban.fm&#47;?from_=shire_top_nav",
                     "https://time.douban.com&#47;?dt_time_source=douban-web_top_nav",
                     "https://market.douban.com&#47;?utm_campaign=douban_top_nav&amp;utm_source=douban&amp;utm_medium=pc_web"
-                    ]
+                    ],
+            sharedState: store.state,
         }
     }
 }

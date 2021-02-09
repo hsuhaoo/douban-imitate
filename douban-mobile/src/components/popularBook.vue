@@ -2,23 +2,23 @@
     <div class="popular-books" v-if="ready">
         <SectionNav :title="title">
             <span class="link-more">
-                <a href="/chart?subcat=F&amp;icn=index-topchart-fiction">更多»</a>
+                <router-link :to="pathMore">更多»</router-link>
             </span>
         </SectionNav>
         <div class="bd">
           <ul class="list-col"
-            data-dstat-areaid="61" data-dstat-mode="click,expose" @touchstart.prevent="movestart($event)" @touchmove="secondmoving($event)">
+             @touchstart="movestart($event)" @touchmove.prevent="secondmoving($event)">
             <li class="" v-for="(item,index) in items" :key="index" ref="li">
                 <div class="cover">
-                <a onclick="" :href="dataList[index].href">
+                <router-link :to="'/subject/'+dataList[index].href.split('/').slice(-2)[0]">
                     <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
                     :alt="dataList[index].title" class="">
-                </a>
+                </router-link>
                 </div>
                 <div class="info">
                     <h4 class="title">
-                        <a onclick=""
-                        :href="dataList[index].href" class="">{{dataList[index].title}}</a>
+                        <router-link
+                        :to="'/subject/'+dataList[index].href.split('/').slice(-2)[0]" class="">{{dataList[index].title}}</router-link>
                     </h4>
                     <p class="entry-star-small">
                         <Star :score="dataList[index].score/2"/>
@@ -100,13 +100,15 @@
             //     let position = Math.max(100, 50+window.scrollY)
             //     this.$refs.float.style.top=position+"px";
             // }
-            this.ready = true;
             if(this.fiction){
-                this.dataList = require('../data/real');
+                this.dataList = require('../data/unreal');
+                this.pathMore = "/page/unreal"
             }
             else {
-                this.dataList = require('../data/unreal');
+                this.dataList = require('../data/real');
+                this.pathMore = "/page/real"
             }
+            this.ready = true;
         },
         props:{
             title:{
@@ -125,23 +127,26 @@
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     overflow: hidden;
 }
 .cover{
-    height: 120px;
+    /* height: 140px; */
 }
 .link-more a{
     color: #42bd56;
 }
+.list-col li:first-child {
+    margin-left: 1.12rem;
+}
 .list-col li{
     position: relative;
-    margin: 0 40px 15px 0;
-    width: 100px;
+    /* margin: 0 20px 15px 0; */
+    margin-left: 0.48rem;
+    /* width: 100%; */
+    min-width: 100px;
 }
-.info {
-    max-width: 100px;
-}
+
 .entry-star-small{
     display: flex;
 }
@@ -150,24 +155,29 @@ p{
 }
 
 img{
-    width: auto;  
-    height: 120px;
+    width: 100px;  
+    height: 142px;
 }
-.title {
-    font-size: 15px;
+.title{
     height: auto;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-align: center;
 }
-.title a:hover, .reviews a:hover{
+.title a{
+    font-size: .94rem;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    margin-top: .6rem;
+    line-height: .94rem;
+}
+.average-rating{
+    color: #818181;
+}
+/* .title a:hover, .reviews a:hover{
     background-color: #37a;
     color: white;
-}
-.meta-label{
-    color: white;
-    background: #a1a1a1;
-}
+} */
 </style>
