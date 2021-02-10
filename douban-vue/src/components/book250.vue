@@ -8,7 +8,7 @@
           
         <div class="content clearfix s" id="book_rec" data-dstat-areaid="58" data-dstat-mode="click,expose">
                 
-          <dl v-for="(item,index) in items" :key="index">
+          <dl v-for="(item,index) in dataList" :key="index">
             <dt>
               <a onclick="" :href="dataList[index].href">
                 <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)" class="m_sub_img">
@@ -33,18 +33,31 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
-    let dataList = require('../data/book250')
+    // let dataList = require('../data/book250')
     export default{
         name:"Book250",
         data(){
             return{
                 items : [...Array(9).keys()],
-                dataList: dataList,
+                dataList: null,
+                ready: false,
             }
         },
         components:{
             SectionNav,
-        }
+        },
+        mounted() {
+            // this.uriProcess();
+            this.$axios
+                .get("http://localhost:8081/indexData/book250", {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.dataList = response.data;
+                    console.log(this.dataList);
+                    this.ready = true;
+                });
+        },
     }
     </script>
 

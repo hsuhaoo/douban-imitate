@@ -13,7 +13,7 @@
                     </router-link>
                 </div>
                 <div class="review-bd">
-                    <h3><a :to="'/review/'+item.id">{{dataList[index].dataTitle}}</a></h3>
+                    <h3><router-link :to="'/review/'+item.id">{{dataList[index].dataTitle}}</router-link></h3>
                     <div class="review-meta">
                         <a >{{dataList[index].info[0]}}</a> 评论
                         <router-link :to="'/subject/'+item.href.split('/').slice(-2)[0]">{{dataList[index].title}}</router-link>

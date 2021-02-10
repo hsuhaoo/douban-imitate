@@ -12,9 +12,9 @@
                     style="background-color: rgb(248, 248, 244);"
                 >
                     <a
-                    title="Kha_Ngan"
-                    >Kha_Ngan</a
-                    ><time datetime="2020-12-08 22:04:38"
+                    title="item.authorid"
+                    >{{item.authorid}}</a
+                    ><time
                     >{{getDate(item.date)}}</time
                     >
                 </div>
@@ -25,7 +25,6 @@
                     <div class="action-bar-group">
                     <a
                         rel="nofollow"
-                        title="回应Kha_Ngan"
                         href="javascript:;"
                         style="display: inline;"
                         @click="deletecomment(index)"

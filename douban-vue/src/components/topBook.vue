@@ -4,7 +4,7 @@
         </SectionNav>
         <div class="bd">
             
-                <ul class="list list-ranking">
+                <ul class="list list-ranking" v-if="ready">
                     
                     <li class="item impression_track_chart" v-for="(item,index) in items" :key="index" :data-track="dataList[index].data_track">
                         <span class="rank-num">{{index+1}}.</span>
@@ -20,18 +20,31 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
-    let dataList = require('../data/topBook')
+    // let dataList = require('../data/topBook')
     export default{
         name:"TopBook",
         data(){
             return{
                 items : [...Array(10).keys()],
-                dataList: dataList,
+                dataList: null,
+                ready: false,
             }
         },
         components:{
             SectionNav,
-        }
+        },
+        mounted() {
+            // this.uriProcess();
+            this.$axios
+                .get("http://localhost:8081/indexData/topBook", {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.dataList = response.data;
+                    // console.log(this.dataList);
+                    this.ready = true;
+                });
+        },
     }
     </script>
 

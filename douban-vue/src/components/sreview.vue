@@ -84,19 +84,25 @@ export default {
         responseType: "json",
       })
       .then((response) => {
-        this.dataList = response.data;
+        this.dataList = response.data[0];
         console.log(this.dataList);
         this.ready = true;
+        window.addEventListener('scroll', this.scroll);
       });
     // console.log(this.dataList);
     // let scrollEvent=()=>{
     //     let position = Math.max(100, 50+window.scrollY)
     //     this.$refs.float.style.top=position+"px";
     // }
-    window.addEventListener('scroll',()=>{
-        let position = Math.max(200, 50+window.scrollY)
-        this.$refs.float.style.top = position+"px";
-    });
+  },
+  destroyed(){
+    window.removeEventListener('scroll', this.scroll);
+  },
+  methods:{
+    scroll: function() {
+      let position = Math.max(200, 50+window.scrollY)
+      this.$refs.float.style.top = position+"px";
+    }
   },
   components:{
       Comment,

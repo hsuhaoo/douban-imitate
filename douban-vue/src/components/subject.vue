@@ -119,7 +119,7 @@
                 })
             .then(response => {
                 console.log(typeof response.data);
-                this.dataList = response.data;
+                this.dataList = response.data[0];
                 console.log(this.toPoint(this.dataList.ratingPer[0])*140);
                 this.ready = true;
             });

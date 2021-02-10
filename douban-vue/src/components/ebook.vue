@@ -16,7 +16,7 @@
                     </a>
                 </span>
             </h3>
-            <ul class="list-col5">
+            <ul class="list-col5" v-if="ready">
                 <li class="" v-for="(item,index) in items" :key="index">
                     <div class="cover">
                         <a :href="dataList[index].href"
@@ -65,19 +65,32 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
-    let dataList = require('../data/eBook')
+    // let dataList = require('../data/eBook')
 
     export default{
         name:"EBook",
         data(){
             return{
                 items : [...Array(10).keys()],
-                dataList: dataList,
+                dataList: null,
+                ready: false,
             }
         },
         components:{
             SectionNav,
-        }
+        },
+        mounted() {
+            // this.uriProcess();
+            this.$axios
+                .get("http://localhost:8081/indexData/eBook", {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.dataList = response.data;
+                    // console.log(this.dataList);
+                    this.ready = true;
+                });
+        },
     }
     </script>
 

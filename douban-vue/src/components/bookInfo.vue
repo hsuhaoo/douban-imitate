@@ -19,7 +19,17 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
-    let info_list = require('../data/bookInfo');
+    // let info_list = require('../data/bookInfo');
+    // info_list.forEach(data=>{
+    //     try {
+    //         let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
+    //         data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
+    //     }
+    //     catch(err){
+    //         console.log(info_list);
+    //         console.log(err);
+    //     }
+    // });
     export default{
         name:"BookInfo",
         data(){
@@ -30,8 +40,25 @@
             }
         },
         mounted() {
-            this.uriProcess();
-            this.ready = true;
+            // this.uriProcess();
+            this.$axios
+                .get("http://localhost:8081/indexData/bookInfo", {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.info_list = response.data;
+                    // console.log(this.dataList);
+                    this.info_list.forEach(data=>{
+                        try {
+                            let uri = data.style.match(/https:.*(webp|jpg)/i)[0];
+                            data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
+                        }
+                        catch(err){
+                            console.log(err);
+                        }
+                    });
+                    this.ready = true;
+                });
         },
         components:{
             SectionNav,
@@ -55,17 +82,6 @@
                     }
                 }
             },
-            uriProcess: function() {
-                info_list.forEach(data=>{
-                    try {
-                        let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
-                        data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
-                    }
-                    catch(err){
-                        console.log(err);
-                    }
-                });
-            }
         },
         computed: {
             newData:  function(){
@@ -80,7 +96,7 @@
                 //     }
                 // });
                 // console.log(info_list);
-                return info_list[this.barCount];
+                return this.info_list[this.barCount];
             }
         }
     }

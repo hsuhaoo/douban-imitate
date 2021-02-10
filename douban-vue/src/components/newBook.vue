@@ -2,7 +2,7 @@
     <div>
         <SectionNav
             title="新书速递"
-            :slide="slide"
+            :slide="true"
             @renderul="renderul"
             :selectIndex="barCount"
         >
@@ -130,6 +130,7 @@ export default {
             dataList: [],
             getCount: 0,
             ready: false,
+            sliding: false,
         };
     },
     mounted() {
@@ -160,6 +161,7 @@ export default {
             for(let i=0;i<=1;i++)
                 this.$refs.ul[i].style.overflow = "hidden";
             // this.$refs.ul2.style.overflow = "hidden";
+            this.sliding = true;
         },
         animate: function(li) {
             var offset = 660;
@@ -186,10 +188,19 @@ export default {
                 Array(end - start)
                     .fill(0)
                     .map((v, i) => i + start);
-            let display = range(
-                this.barCount * 5,
-                this.barCount * 5 + 5
-            ).concat(range(this.barCount * 5 + 25, this.barCount * 5 + 30));
+            let display;
+            if(!this.sliding){ 
+                display = range(
+                    this.barCount * 5,
+                    this.barCount * 5 + 5
+                ).concat(range(this.barCount * 5 + 25, this.barCount * 5 + 30));
+            }
+            else{
+                display = range(
+                    this.slideIndex * 5,
+                    this.slideIndex * 5 + 5
+                ).concat(range(this.slideIndex * 5 + 25, this.slideIndex * 5 + 30));
+            }
             this.$refs.li.forEach((list, index) => {
                 if (!display.includes(index)) {
                     list.style.opacity = "0";
@@ -219,7 +230,7 @@ export default {
             //         this.ready = true;
             //     });
             this.$axios
-                .get("http://localhost:8081/indexData/new", {
+                .get("http://localhost:8081/indexData/newBook", {
                     responseType: "json",
                 })
                 .then((response) => {

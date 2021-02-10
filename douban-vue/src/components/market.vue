@@ -21,7 +21,7 @@
               <p class="desc indent-paragraph" data-row="4">Rick and Morty首部官方设定集，主题贴纸限量送</p>
             </div>
           </div>
-          <ul class="list-col list-col5">
+          <ul class="list-col list-col5" v-if="ready">
               
               <li v-for="(item,index) in items" :key="index">
                 <div class="cover">
@@ -43,18 +43,30 @@
 
 <script>
     import SectionNav from './sectionNav.vue'
-    let dataList = require('../data/marketBook')
+    // let dataList = require('../data/marketBook')
     export default{
         name:"Market",
         data(){
             return{
                 items : [...Array(5).keys()],
-                dataList: dataList,
+                dataList: null,
+                ready: false,
             }
         },
         components:{
             SectionNav,
-        }
+        },
+        mounted() {
+            this.$axios
+                .get("http://localhost:8081/indexData/marketBook", {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.dataList = response.data;
+                    // console.log(this.dataList);
+                    this.ready = true;
+                });
+        },
     }
     </script>
 
