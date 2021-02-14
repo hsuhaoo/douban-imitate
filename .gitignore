@@ -12,3 +12,8 @@ douban-mobile/dist/
 douban-mobile/src/assets/picture/
 douban-mobile/public/picture/
 douban-express/
+douban/node_modules/
+douban/dist/
+douban/src/assets/picture/
+douban/src/data/
+douban/public/picture/

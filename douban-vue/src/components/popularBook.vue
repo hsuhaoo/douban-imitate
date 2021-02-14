@@ -11,7 +11,7 @@
         <div class="bd">
           <ul class="list-col"
             data-dstat-areaid="61" data-dstat-mode="click,expose">
-            <li class="" v-for="(item,index) in items" :key="index">
+            <li class="" v-for="(item,index) in dataList" :key="index">
                 <div class="cover">
                 <router-link onclick="" :to="'/subject/'+dataList[index].href.split('/').slice(-2)[0]">
                     <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
@@ -53,18 +53,34 @@
 <script>
     import SectionNav from './sectionNav.vue'
     import Star from './star.vue'
-    let dataList = require('../data/popularBook')
+    // let dataList = require('../data/popularBook')
+    import store from "../store.js"
+
     export default{
         name:"PopularBook",
         data(){
             return{
-                items : [...Array(10).keys()],
-                dataList: dataList,
+                dataList: null,
+                sharedState: store.state,
             }
         },
         components:{
             SectionNav,
             Star,
+        },
+        mounted() {
+            // this.uriProcess();
+            this.$axios
+                .get("http://localhost:8081/indexData/popularBook", {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.dataList = response.data;
+                    if(store.debug){
+                        console.log(this.dataList);
+                    }
+                    this.ready = true;
+                });
         },
         // computed:{
         //     reviewData:  function(){

@@ -5,6 +5,8 @@ import VueRouter from 'vue-router';
 import Index from "./components/Index.vue"
 import Page from "./components/page.vue"
 import Subject from "./components/subject.vue"
+import Search from "./components/search.vue"
+import Login from "./components/login.vue"
 
 import axios from 'axios'
 
@@ -19,6 +21,8 @@ let router = new VueRouter({
       // { path: '/tag/:id', name:"tag", component: Stag }
       { path: '/page/:id', name:"page", component: Page },
       { path: '/subject/:id', name:"subject", component: Subject },
+      { path: '/search', name:"search", component: Search },
+      { path: '/login', name:"login", component: Login },
   ]
 });
 

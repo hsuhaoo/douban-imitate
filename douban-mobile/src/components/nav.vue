@@ -6,15 +6,17 @@
                 <div class="TalionNav-primary"><a href="/home_guide" class="logo">
                         <h1 style="font-size: 0px;">豆瓣</h1>
                     </a>
-                    <form action="/search" class="search-box on-search" method="GET"><input class="search-input"
-                            name="query" type="search" placeholder="搜索"></form><a class="nav-btns cancel">取消</a>
+                    <form class="search-box on-search" method="GET"><input class="search-input"
+                             type="search" placeholder="搜索" v-model="message" @keyup.13="jump()"></form>
+                    <router-link to="/login" class="nav-btns cancel" v-if="sharedState.id.length===0">注册/登录</router-link>
+                     <a class="items" v-if="sharedState.id.length>0">{{sharedState.id}}的账号</a>
                 </div>
                 <div class="TalionNav-static">
-                    <a href="/home_guide" class="icon-wrap">
+                    <router-link to="/" class="icon-wrap">
                         <img
                             src="https://img3.doubanio.com/f/frodo/144e6fb7d96701944e7dbb1a9bad51bdb1debe29/pics/app/logo.png"
                             class="icon" alt="douban icon">
-                    </a>
+                    </router-link>
                     <a class="info" href="/home_guide">
                         <h2>豆瓣<span>App</span></h2>
                         <p>记录你的书影音生活</p>
@@ -30,13 +32,21 @@
 </template>
 
 <script>
+import store from "../store.js"
+
 export default{
     name:"Nav",
     data(){
         return{
-            
+            sharedState: store.state,
+            message:"",
         }
-    }
+    },
+    methods: {
+        jump: function() {
+        this.$router.push({ name: "search", params: { message: this.message } });
+        },
+    },
 }
 </script>
 <style scoped>
@@ -62,7 +72,7 @@ a {
 }
 .TalionNav-primary .search-box .on-search {
     max-width: 230px;
-    flex: 230px 0 0;
+    /* flex: 230px 0 0; */
     animation: open ease-in 0.3s;
 }
 .TalionNav-primary .search-box {

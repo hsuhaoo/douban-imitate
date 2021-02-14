@@ -32,7 +32,7 @@
     flex-wrap: wrap;
 }
 .type-list li {
-    width: 45%;
+    width: 44%;
     border-top: solid 1px #eee;
     border-right: solid 1px #eee;
     padding-right: 1.12rem;

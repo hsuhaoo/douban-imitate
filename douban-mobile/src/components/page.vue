@@ -131,7 +131,7 @@ h2 {
 }
 
 #content {
-  width: 1040px;
+  /* width: 1040px; */
   margin: 0 auto;
 }
 
@@ -140,7 +140,7 @@ h2 {
 }
 
 #subject_list {
-  width: 675px;
+  /* width: 675px; */
   margin-left: 20px;
 }
 
@@ -149,6 +149,9 @@ li {
   padding: 20px 0 10px;
 }
 
+.subject-item{
+  display:flex;
+}
 .subject-item .pub {
   margin: 6px 0 8px;
 }
