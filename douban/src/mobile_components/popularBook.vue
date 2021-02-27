@@ -89,20 +89,6 @@
         //     }
         // },
         mounted() {
-
-            // this.$axios
-            // .get("http://localhost:8081/review/" + this.$route.params.id, {
-            //     responseType: "json",
-            // })
-            // .then((response) => {
-            //     this.dataList = response.data;
-            //     this.ready = true;
-            // });
-            // console.log(this.dataList);
-            // let scrollEvent=()=>{
-            //     let position = Math.max(100, 50+window.scrollY)
-            //     this.$refs.float.style.top=position+"px";
-            // }
             if(this.fiction){
                 // this.dataList = require('../data/unreal');
                 this.$axios

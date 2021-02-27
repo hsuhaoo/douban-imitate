@@ -10,69 +10,13 @@
                 <router-link class="" to="/page/new">更多»</router-link>
             </span>
         </SectionNav>
-        <!-- <ul class="list5" ref="ul1" v-if="ready">
-            <li v-for="(item, index) in ulData1" :key="index" ref="li">
-                <div class="cover ">
-                    <router-link
-                        :to="
-                            '/subject/' +
-                                ulData1[index].href.split('/').slice(-2, -1)
-                        "
-                    >
-                        <img
-                            :src="
-                                '../../picture/' +
-                                    ulData1[index].src.split('/').slice(-1)
-                            "
-                            :alt="dataList[index].title"
-                            @mouseenter="hover"
-                            @mouseleave="hoverend"
-                        />
-                    </router-link>
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <router-link
-                            :to="
-                                '/subject/' +
-                                    ulData1[index].href.split('/').slice(-2, -1)
-                            "
-                            :title="ulData1[index].title"
-                        >
-                            {{ dataList[index].title }}
-                        </router-link>
-                    </div>
-                    <div class="author">{{ dataList[index]["作者"] }}</div>
-                    <div class="moreMeta">
-                        <h4 class="title">{{ dataList[index].title }}</h4>
-                        <p>
-                            <span class="author">{{
-                                dataList[index]["作者"]
-                            }}</span
-                            >/
-                            <span class="year">{{
-                                dataList[index]["出版年"]
-                            }}</span
-                            >/
-                            <span class="publisher">{{
-                                dataList[index]["出版社"]
-                            }}</span>
-                        </p>
-                        <p class="abstract">
-                            {{ dataList[index].introSummary }}
-                        </p>
-                    </div>
-                </div>
-            </li>
-        </ul> -->
         <ul
             class="list5"
             ref="ul"
             v-for="(ul, ulindex) in ulData"
-            :key="ulindex"
             v-if="ready"
         >
-            <li v-for="(item, index) in ul" :key="index" ref="li">
+            <li v-for="(item, index) in ul" :key="item.id" ref="li">
                 <div class="cover ">
                     <router-link
                         :to="'/subject/' + item.href.split('/').slice(-2, -1)"
@@ -118,7 +62,6 @@
 </template>
 <script>
 import SectionNav from "./sectionNav.vue";
-// let ul_list = require("../data/newBook");
 import store from "../store.js"
 
 export default {
@@ -212,32 +155,18 @@ export default {
             });
             for(let i=0;i<=1;i++)
                 this.$refs.ul[i].style.overflow = "visible";
-            // this.$refs.ul2.style.overflow = "visible";
         },
         hoverend: function() {
             for(let i=0;i<=1;i++)
                 this.$refs.ul[i].style.overflow = "hidden";
-            // this.$refs.ul2.style.overflow = "hidden";
         },
         getData: function() {
-            // this.$axios.all(this.ulData1.map(elem => {
-            //     return this.$axios
-            //         .get('http://localhost:8081/subject/' + elem.href.split('/').slice(-2, -1), {
-            //             responseType: 'json'
-            //         });
-            // }))
-            //     .then(response => {
-            //         this.dataList = response.map(elem => elem.data);
-            //         // console.log(this.dataList);
-            //         this.ready = true;
-            //     });
             this.$axios
                 .get("http://localhost:8081/indexData/newBook", {
                     responseType: "json",
                 })
                 .then((response) => {
                     this.dataList = response.data;
-                    // console.log(this.dataList);
                     this.ready = true;
                 });
         },
@@ -259,8 +188,7 @@ export default {
             for (const ul of ul_list) {
                 dataList = dataList.concat(ul.slice(5, 10));
             }
-            // dataList.push(dataList.slice(0,5));
-            // console.log(dataList);
+
             let extra = dataList.slice(0, 5);
             for (const elem of extra) {
                 dataList.push(elem);
@@ -294,7 +222,6 @@ export default {
     width: 660px;
     display: flex;
     align-items: flex-end;
-    /* flex-wrap: wrap; */
     height: 225px;
     overflow: hidden;
 }
@@ -308,8 +235,6 @@ li {
     position: relative;
     margin: 0 40px 15px 0;
     width: 100px;
-    /* left: -660px; */
-    /* height: 200px; */
 }
 li:nth-child(5n) {
     margin: 0 0 15px 0;

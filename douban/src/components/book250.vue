@@ -11,7 +11,7 @@
           <dl v-for="(item,index) in dataList" :key="index">
             <dt>
               <a onclick="" :href="dataList[index].href">
-                <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)" class="m_sub_img">
+                <img :data-src="'../picture/'+dataList[index].src.split('/').slice(-1)" class="m_sub_img" ref="img">
               </a>
             </dt>
             <dd>
@@ -35,6 +35,7 @@
     import SectionNav from './sectionNav.vue'
     // let dataList = require('../data/book250')
     import store from "../store.js"
+    import lazyload from "../lazyload.js"
 
     export default{
         name:"Book250",
@@ -43,6 +44,7 @@
                 items : [...Array(9).keys()],
                 dataList: null,
                 ready: false,
+                num: 0,
             }
         },
         components:{
@@ -56,7 +58,11 @@
                 })
                 .then((response) => {
                     this.dataList = response.data;
-                    console.log(this.dataList);
+                    if(store.debug){
+                        console.log(this.dataList);
+                    }
+                    let lazy = lazyload(this);
+                    window.addEventListener('scroll', lazy, false);
                     this.ready = true;
                 });
         },

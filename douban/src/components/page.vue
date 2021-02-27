@@ -9,7 +9,7 @@
                     <a href="javascript:;" :class="{selected: isScore}" @click="sortScore()">按评价排序</a>
                 </div>
                 <ul class="subject-list" >
-                    <li class="subject-item" v-for="(item,index) in dataList" :key="index">
+                    <li class="subject-item" v-for="(item,index) in dataList" :key="item.id">
                         <div class="pic">
                             <router-link :to="'/subject/'+dataList[index].id" class="nbg" >
                                 <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)">

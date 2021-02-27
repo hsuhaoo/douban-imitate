@@ -9,7 +9,7 @@
             <div class="review " v-for="(item,index) in dataList" :key="index">
                 <div class="review-hd">
                     <router-link :to="'/review/'+item.id">
-                        <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)" :alt="dataList[index].title">
+                        <img :data-src="'../picture/'+dataList[index].src.split('/').slice(-1)" :alt="dataList[index].title" ref="img">
                     </router-link>
                 </div>
                 <div class="review-bd">
@@ -41,6 +41,8 @@
     import SectionNav from './sectionNav.vue'
     import Star from './star.vue'
     import store from "../store.js"
+    import lazyload from "../lazyload.js"
+
 
     // let dataList = require('../data/review')
     export default{
@@ -48,6 +50,7 @@
         data(){
             return{
                 dataList: null,
+                num: 0,
             }
         },
         mounted() {
@@ -60,6 +63,8 @@
                         item.text = item.text.slice(0,128);
                     }
                     // this.abstract();
+                    let lazy = lazyload(this);
+                    window.addEventListener('scroll', lazy, false);
                     this.ready = true;
                 }
             );

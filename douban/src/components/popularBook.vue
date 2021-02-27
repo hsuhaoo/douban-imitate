@@ -14,8 +14,8 @@
             <li class="" v-for="(item,index) in dataList" :key="index">
                 <div class="cover">
                 <router-link onclick="" :to="'/subject/'+dataList[index].href.split('/').slice(-2)[0]">
-                    <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
-                    :alt="dataList[index].title" class="">
+                    <img :data-src="'../picture/'+dataList[index].src.split('/').slice(-1)"
+                    :alt="dataList[index].title" class="" ref="img">
                 </router-link>
                 </div>
                 <div class="info">
@@ -55,6 +55,8 @@
     import Star from './star.vue'
     // let dataList = require('../data/popularBook')
     import store from "../store.js"
+    import lazyload from "../lazyload.js"
+
 
     export default{
         name:"PopularBook",
@@ -63,6 +65,7 @@
                 dataList: null,
                 sharedState: store.state,
                 ready:false,
+                num: 0,
             }
         },
         components:{
@@ -80,9 +83,28 @@
                     if(store.debug){
                         console.log(this.dataList);
                     }
+                    let lazy = lazyload(this);
+                    window.addEventListener('scroll', lazy, false);
                     this.ready = true;
                 });
         },
+        // methods:{
+        //     lazyload: function(){
+        //     // const imgs = document.getElementsByTagName('img')
+        //     for(let i=this.num; i<this.$refs.img.length; i++) {
+        //         // 用可视区域高度减去元素顶部距离可视区域顶部的高度
+        //         window.console.log("testlazy");
+        //         let distance = window.innerHeight - this.$refs.img[i].getBoundingClientRect().top
+        //         // 如果可视区域高度大于等于元素顶部距离可视区域顶部的高度，说明元素露出
+        //         if(distance >= 0 ){
+        //             // 给元素写入真实的src，展示图片
+        //             this.$refs.img[i].src = this.$refs.img[i].getAttribute('data-src')
+        //             // 前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
+        //             this.num = i + 1;
+        //         }
+        //     }
+        //     }
+        // }
         // computed:{
         //     reviewData:  function(){
         //         let a = this.dataList.map(function(data){

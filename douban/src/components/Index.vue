@@ -29,7 +29,6 @@
   
   
   
-  
   export default {
     name: 'Index',
     components: {
@@ -42,7 +41,7 @@
       Tag,
       Book250,
       TopBook
-    }
+    },
   }
   </script>
   

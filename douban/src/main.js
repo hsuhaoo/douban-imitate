@@ -31,7 +31,6 @@ Vue.prototype.$axios = axios;
 
 let router = new VueRouter({
   routes: [
-    //一个个对象
     {
       path: "/",
       component: Container,
@@ -61,7 +60,6 @@ let router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to.path)
   // next();
   if (to.path === "/") {
     if (

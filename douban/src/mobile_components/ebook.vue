@@ -17,7 +17,7 @@
                 </span>
             </h3>
             <ul class="list-col5" v-if="ready">
-                <li class="" v-for="(item,index) in dataList" :key="index">
+                <li class="" v-for="(item,index) in dataList">
                     <div class="cover">
                         <a :href="dataList[index].href"
                             target="_blank" >

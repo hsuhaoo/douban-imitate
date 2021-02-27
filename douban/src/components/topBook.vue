@@ -6,7 +6,7 @@
             
                 <ul class="list list-ranking" v-if="ready">
                     
-                    <li class="item impression_track_chart" v-for="(item,index) in dataList" :key="index" :data-track="dataList[index].data_track">
+                    <li class="item impression_track_chart" v-for="(item,index) in dataList" >
                         <span class="rank-num">{{index+1}}.</span>
                         <div class="book-info">
                             <div class="author">{{dataList[index].author}}</div>

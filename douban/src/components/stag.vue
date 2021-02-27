@@ -105,16 +105,28 @@ export default {
         isScore: false,
         isDate: true,
         sharedState: store.state,
+        dataList: null,
         };
     },
     components: {
         Star,
     },
     mounted() {
-        let dataList = require("../data/tag_json/" +
-        this.$route.params.id +
-        ".json");
-        this.dataList = dataList;
+        // let dataList = require("../data/tag_json/" +
+        // this.$route.params.id +
+        // ".json");
+        // this.dataList = dataList;
+        this.$axios
+                .get("http://localhost:8081/tag/"+encodeURIComponent(this.$route.params.id), {
+                    responseType: "json",
+                })
+                .then((response) => {
+                    this.dataList = response.data;
+                    if(store.debug){
+                        console.log(this.dataList);
+                    }
+                    this.ready = true;
+                });
         if(store.debug){
             console.log(this.dataList);
         }

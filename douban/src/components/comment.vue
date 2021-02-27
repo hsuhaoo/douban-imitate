@@ -6,7 +6,7 @@
             class="item comment-item"
             >
             <div class="comment-item-body" v-if="ready">
-                <div class="comment-main" v-for="(item,index) in dataList">
+                <div class="comment-main" v-for="(item,index) in dataList" :key="item.authorid">
                 <div
                     class="meta-header"
                     style="background-color: rgb(248, 248, 244);"

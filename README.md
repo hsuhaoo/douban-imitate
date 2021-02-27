@@ -9,6 +9,8 @@ vue+axios+express+mongodb模仿豆瓣读书
 - 实现了简单的评论功能（仅文本）
 - 分别实现PC端和移动端
 - 数据来自爬虫，见https://github.com/hsuhaoo/doubanCrawling
+- 实现了新书速递的轮播图
+- 实现了图片的懒加载
 
 
 

@@ -1,14 +1,14 @@
 <template>
     <div id="content">
         <h1>{{title}}</h1>
-        <div class="grid-16-8 clearfix">
+        <div class="grid-16-8">
             <div class="article">
-                <ul class="top-tab clearfix">
-                    <li :class="{selected: isScore}"> <a href="javascript:;" @click="sortScore()"> <span>最受欢迎的</span> </a> </li>
-                    <li :class="{selected: isDate}"> <a href="javascript:;" @click="sortYear()"> <span>最新书评</span> </a> </li>
-                </ul>
+                <div class="top-tab">
+                    <a href="javascript:;" @click="sortScore()" :class="{selected: isScore}"> <span>最受欢迎的</span> </a>
+                    <a href="javascript:;" @click="sortYear()" :class="{selected: isDate}"> <span>最新书评</span> </a>
+                </div>
                 <div class="review-list chart " v-if="ready">
-                    <div v-for="(item,index) in dataList" :key="index">
+                    <div v-for="(item,index) in dataList" :key="item.id">
                         <div class="main review-item" >
                             <router-link class="subject-img" :to="'/review/'+item.id"> <img :alt="item.title"
                                     :title="item.title" :src="'../picture/'+item.src.split('/').slice(-1)"
@@ -16,11 +16,7 @@
                             </router-link>
                             <div class="info">
                                 <header class="main-hd">
-                                    <!-- <a href="https://www.douban.com/people/atdelilah/" class="avator">
-                                        <img width="24" height="24" :src="'../picture/'+item.src.split('/').slice(-1)">
-                                    </a> -->
                                     <a class="name">{{item.dataAuthor}}</a>
-                                    <!-- <span class="allstar10 main-title-rating" title="很差">{{item.star}}</span> -->
                                     <Star :score="item.star/2"/>
                                     <span class="main-meta">{{item.date}}</span>
                                 </header>
@@ -124,24 +120,6 @@
                 this.abstract = textList;
             }
         },
-        // computed: {
-        //     abstract: function() {
-        //         // let getData = (elem) => {
-        //         //   let text = elem.text.slice(0,128)+"...";
-        //         //   return text;
-        //         // };
-        //         let textList = [];
-        //         for(let i=0;i<this.dataList.length;i++){
-        //             if(!this.folder[i]){
-        //                 textList.push(this.dataList[i].text);
-        //             }
-        //             else{
-        //                 textList.push(this.dataList[i].text.slice(0,128)+"...");
-        //             }
-        //         }
-        //         return textList;
-        //     }
-        // },
     }
 </script>
 
@@ -155,10 +133,14 @@
         color: #494949;
         line-height: 1.1;
     }
+    .grid-16-8{
+        width: 675px;
+        margin-left: 20px;
+    }
     .top-tab {
         font-size: 13px;
         color: #37a;
-        display: flex;
+        text-align: right;
     }
     .top-tab .selected, .top-tab .selected a {
         color: #111;
@@ -186,9 +168,6 @@
         display: flex;
         border-top: 1px dashed #ddd;
         padding: 20px 0 10px;
-    }
-    .review-list {
-        margin-top: 20px;
     }
     #content {
         width: 1040px;

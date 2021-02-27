@@ -17,12 +17,12 @@
                 </span>
             </h3>
             <ul class="list-col5" v-if="ready">
-                <li class="" v-for="(item,index) in dataList" :key="index">
+                <li class="" v-for="(item,index) in dataList" >
                     <div class="cover">
                         <a :href="dataList[index].href"
                             target="_blank" >
-                            <img :src="'../picture/'+dataList[index].src.split('/').slice(-1)"
-                                :alt="dataList[index].title" width="106px" height="158px">
+                            <img :data-src="'../picture/'+dataList[index].src.split('/').slice(-1)"
+                                :alt="dataList[index].title" width="106px" height="158px" ref="img">
                         </a>
                     </div>
                     <div class="info">
@@ -66,6 +66,7 @@
 <script>
     import SectionNav from './sectionNav.vue'
     import store from "../store.js"
+    import lazyload from "../lazyload.js"
 
 
     export default{
@@ -75,6 +76,7 @@
                 dataList: null,
                 ready: false,
                 sharedState: store.state,
+                num: 0,
             }
         },
         components:{
@@ -90,6 +92,8 @@
                     if(store.debug){
                         console.log(this.dataList);
                     }
+                    let lazy = lazyload(this);
+                    window.addEventListener('scroll', lazy, false);
                     this.ready = true;
                 });
         },

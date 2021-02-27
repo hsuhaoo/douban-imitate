@@ -19,17 +19,6 @@
 </template>
 <script>
     import SectionNav from './sectionNav.vue'
-    // let info_list = require('../data/bookInfo');
-    // info_list.forEach(data=>{
-    //     try {
-    //         let uri = data.style.match(/https:.*[webp|jpg]/i)[0];
-    //         data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
-    //     }
-    //     catch(err){
-    //         console.log(info_list);
-    //         console.log(err);
-    //     }
-    // });
     import store from "../store.js"
 
     export default{
@@ -56,7 +45,7 @@
                     this.info_list.forEach(data=>{
                         try {
                             let uri = data.style.match(/https:.*(webp|jpg)/i)[0];
-                            data.style = data.style.replace(uri,"http://127.0.0.1:8080/picture/"+uri.split('/').slice(-1));
+                            data.style = data.style.replace(uri,"http://localhost:8080/picture/"+uri.split('/').slice(-1));
                         }
                         catch(err){
                             console.log(err);
@@ -116,7 +105,7 @@
         display: inline-block;
     }
     a {
-        /* display: flex; */
+        display: flex;
         text-decoration: none;
     }
     .content{
